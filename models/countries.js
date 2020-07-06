@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Country = sequelize.define("Country", {
+    const Countries = sequelize.define("Countries", {
 
       country_name: {
         type: DataTypes.STRING,
@@ -23,5 +23,5 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         freezeTableName: true
     });
-    return Country
+    return Countries;
 };

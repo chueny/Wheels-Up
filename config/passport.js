@@ -16,8 +16,6 @@ passport.use(
         where: {
           email: email
         }
-
-        console.log("TEST - CHUE ");
       }).then(dbUser => {
         // If there's no user with the given email
         if (!dbUser) {
