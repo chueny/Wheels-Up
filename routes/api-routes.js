@@ -36,6 +36,29 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+
+
+  app.get("/api/new_country?", function(req, res) {
+    if (req.params.countries) {
+      // Display the JSON for ONLY that character.
+      // (Note how we're using the ORM here to run our searches)
+      country.findOne({
+        where: {
+          countryName: req.params.countries
+          populationSize: req.params.population
+          countryRegion: req.params.region
+
+        }
+      }).then(function(dbCountry) {
+        return res.json(dbCountry);
+      });
+    } else {
+      country.findAll().then(function(dbCountry) {
+        return res.json(dbCountry);
+      });
+    }
+  });
+
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
