@@ -73,4 +73,27 @@ module.exports = function(app) {
       });
     }
   });
+
+// Route for adding a new country to the list
+app.post("/api/new_country", (req, res) => {
+  db.Countries.create({
+    country_name: req.body.country_name,
+    visited: req.body.visited,
+    population: req.body.population,
+    region: req.body.region
+  })
+    .then((dbCountry) => {
+      res.json(dbCountry);
+    })
+    .catch(err => {
+      res.status(404).json(err);
+    });
+});
+
+// THIS IS A TESET I USE TO MAKE SURE THE SERVER IS WORKING
+// app.get("/api/new_country", (req, res) => {
+//   res.send("TEST WORKED!");
+// });
+
 };
+
