@@ -24,9 +24,10 @@ module.exports = function(sequelize, DataTypes) {
       region: {
           type: DataTypes.STRING,
           allowNull: false
-      }
+      },
     }, {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     });
     return Countries;
 };
