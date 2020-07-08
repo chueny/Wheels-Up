@@ -1,24 +1,27 @@
-console.log("JS WORKING!");
 $(document).ready(function () {
 
-    //let $toVisit = $("#toVisit");
-
-    let countries = [];
-
+    let countries = ["Peru", "Italy"];
+    
     getCountries();
 
     function initializeVisitList() {
-        //$toVisit.empty();
+        $("#toVisit").empty();
+
         let countriesToAdd = [];
+        
         for (var i = 0; i < countries.length; i++) {
             countriesToAdd.push(countries[i]);
         }
-        //$toVisit.prepend(countriesToAdd);
+
+        $("#toVisit").prepend(countriesToAdd);
         $("#toVisit").prepend("text");
+
+        console.log(countriesToAdd);
     }
 
     function getCountries() {
         $.get("/api/countries", function (data) {
+            console.log(countries);
             countries = data;
             initializeVisitList();
         });
