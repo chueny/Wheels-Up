@@ -12,7 +12,7 @@ $(document).ready(function () {
         
         for (var i = 0; i < countries.length; i++) {
             countriesToAdd.push(countries[i]);
-            $("#toVisit").append("<p>" + countriesToAdd[i].country_name + "</p>");
+            $("#toVisit").append("<li>" + countriesToAdd[i].country_name + "  <button>Wheels Up!</button></li>");
         }
         // logging out the array to make sure data is being received from the API
         console.log(countriesToAdd);
