@@ -89,7 +89,6 @@ module.exports = function (app) {
   app.get("/api/countries", function (req, res) {
 
     db.Countries.findAll({}).then(function (dbCountries) {
-
       res.json(dbCountries);
     })
   });
@@ -130,3 +129,4 @@ module.exports = function (app) {
 
   });
 };
+
