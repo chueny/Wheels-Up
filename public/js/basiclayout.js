@@ -9,6 +9,9 @@ $(document).ready(function () {
         $("#toVisit").empty();
         $("#visited").empty();
 
+        // Next Step: make toVisitCountries allCountries and have the for loop put all the countries from the database in there
+        // and then to the same thing for desired countries as was done for visited countries
+
         const toVisitCountries = [];
         
         for (var i = 0; i < countries.length; i++) {
@@ -16,14 +19,16 @@ $(document).ready(function () {
 
             $("#toVisit").append("<li>" + toVisitCountries[i].country_name + ` <button class="addToVisited">Wheels Up!</button></li>`);
         }
-        // logging out the array to make sure data is being received from the API
-        //console.log(toVisitCountries);
-
+        
+        // Filters out countries that have NOT been visited
         const visitedCountries = toVisitCountries.filter(function(countryData) {
+
             return countryData.visited === true;
         });
         console.log(visitedCountries);
-        //visitedCountries.forEach(visitedCountry => $("#visited").append("<li>" + visitedCountry.country_name + "</li>"))
+        
+        // Appends the country's name to list of visited countries
+        visitedCountries.forEach(visitedCountry => $("#visited").append("<li>" + visitedCountry.country_name + "</li>"))
 
 
     }
@@ -45,16 +50,17 @@ $(document).ready(function () {
         let countryName = $(this).parent().text().slice(0,-11);
         console.log(countryName);
 
-        const visitedCountry = countryName;
+        //const visitedCountry = countryName;
 
-        // const visitedCountry = {
-        //     country_name: countryName,
-        //     visited: 1
-        // };
+        const visitedCountry = {
+            country_name: countryName,
+            visited: 1
+        };
 
         addToVisited(visitedCountry);
 
         function addToVisited(countryObj) {
+            console.log(countryObj)
             $.ajax({
               method: "PUT",
               url: "/api/visited",

@@ -95,6 +95,7 @@ module.exports = function (app) {
 
   // Route for adding a new country to the list
   app.post("/api/new_country", (req, res) => {
+    // verify if the country exist before create (look at Slack LA comment for help -BV)
     db.Countries.create({
       country_name: req.body.country_name,
       visited: req.body.visited,
@@ -115,10 +116,10 @@ module.exports = function (app) {
   // });
 
   app.put("/api/visited", function(req, res) {
-
-    db.Countries.update({ visited: 1 }, {
+console.log(req.body);
+    db.Countries.update({ visited: req.body.visited }, {
       where: {
-        country_name: req.body
+        country_name: req.body.country_name
       }
     }).then(function(dbCountryVisited) {
 
