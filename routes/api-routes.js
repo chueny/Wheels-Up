@@ -44,8 +44,8 @@ module.exports = function (app) {
       // (Note how we're using the ORM here to run our searches)
       country.findOne({
         where: {
-          countryName: req.params.countries
-          populationSize: req.params.population
+          countryName: req.params.countries,
+          populationSize: req.params.population,
           countryRegion: req.params.region
 
         }
@@ -70,7 +70,6 @@ module.exports = function (app) {
       res.end();
     });
   });
-};
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
@@ -90,7 +89,6 @@ module.exports = function (app) {
   app.get("/api/countries", function (req, res) {
 
     db.Countries.findAll({}).then(function (dbCountries) {
-      
       res.json(dbCountries);
     })
   });
@@ -130,4 +128,5 @@ module.exports = function (app) {
     );
 
   });
-}
+};
+
