@@ -31,6 +31,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         // RIGHT NOW countryName IS JUST THE COUNTRY NAME; USE THIS FOR THE PUT REQUEST SOMEHOW
+        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
         let countryName = $(this).parent().text().slice(0,-11);
         console.log(countryName);
     });
