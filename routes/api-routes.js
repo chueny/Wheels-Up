@@ -114,6 +114,18 @@ module.exports = function (app) {
   //   res.send("TEST WORKED!");
   // });
 
+  app.put("/api/visited", function(req, res) {
+
+    db.Countries.update({ visited: 1 }, {
+      where: {
+        country_name: req.body
+      }
+    }).then(function(dbCountryVisited) {
+
+        res.json(dbCountryVisited);
+    })
+  });
+
   app.put("/api/desiredChange", function (req, res) {
     // Do I need to use the /:country_name above? In the client-side too?
     db.Countries.update({ desired: 1 }, {

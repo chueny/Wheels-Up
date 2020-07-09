@@ -4,18 +4,28 @@ $(document).ready(function () {
     
     getCountries();
 
-    // This function creates an array (countriesToAdd) and puts all the country names coming from the database in it and appends each to the page.
+    // This function creates an array (toVisitCountries) and puts all the country names coming from the database in it and appends each to the page.
     function initializeToVisitList() {
         $("#toVisit").empty();
+        $("#visited").empty();
 
-        let countriesToAdd = [];
+        const toVisitCountries = [];
         
         for (var i = 0; i < countries.length; i++) {
-            countriesToAdd.push(countries[i]);
-            $("#toVisit").append("<li>" + countriesToAdd[i].country_name + ` <button class="addToVisited">Wheels Up!</button></li>`);
+            toVisitCountries.push(countries[i]);
+
+            $("#toVisit").append("<li>" + toVisitCountries[i].country_name + ` <button class="addToVisited">Wheels Up!</button></li>`);
         }
         // logging out the array to make sure data is being received from the API
-        console.log(countriesToAdd);
+        //console.log(toVisitCountries);
+
+        const visitedCountries = toVisitCountries.filter(function(countryData) {
+            return countryData.visited === true;
+        });
+        console.log(visitedCountries);
+        //visitedCountries.forEach(visitedCountry => $("#visited").append("<li>" + visitedCountry.country_name + "</li>"))
+
+
     }
 
     // This function makes a get request to the API to get all the country data and sets it to array countries.
@@ -34,37 +44,29 @@ $(document).ready(function () {
         // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
         let countryName = $(this).parent().text().slice(0,-11);
         console.log(countryName);
+
+        const visitedCountry = countryName;
+
+        // const visitedCountry = {
+        //     country_name: countryName,
+        //     visited: 1
+        // };
+
+        addToVisited(visitedCountry);
+
+        function addToVisited(countryObj) {
+            $.ajax({
+              method: "PUT",
+              url: "/api/visited",
+              data: countryObj
+            }).then(
+                function () {
+                    console.log(countryName + " added to visited.");
+                    location.reload();
+                }
+            );
+        }
     });
-
-    // $(".addToVisited").on("click", function (event) {
-    //     event.preventDefautl();
-
-    //     let countryName = $(this).val();
-
-    //     console.log(countryName);
-
-    //     // const newDesiredCountry = {
-    //     //     country_name: countryName,
-    //     //     visited: 1
-    //     // };
-
-    //     // console.log(newDesiredCountry);
-    //     // // Send the PUT request.
-    //     // updateDesired(newDesiredCountry);
-
-    //     // function updateDesired(newDesired) {
-    //     //     $.ajax({
-    //     //       method: "PUT",
-    //     //       url: "/api/desiredChange",
-    //     //       data: newDesired
-    //     //     }).then(
-    //     //         function () {
-    //     //             console.log(countryName + " added to the desired list.");
-    //     //             location.reload();
-    //     //         }
-    //     //     );
-    //     // }
-    // });
 
     $(".addToDesired").on("submit", function (event) {
         event.preventDefautl();
