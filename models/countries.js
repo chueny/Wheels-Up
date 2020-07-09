@@ -4,9 +4,14 @@ module.exports = function(sequelize, DataTypes) {
       country_name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [1, 60]
         }
+      },
+      desired: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
       visited: {
         type: DataTypes.BOOLEAN,
@@ -19,9 +24,10 @@ module.exports = function(sequelize, DataTypes) {
       region: {
           type: DataTypes.STRING,
           allowNull: false
-      }
+      },
     }, {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     });
     return Countries;
 };
