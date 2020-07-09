@@ -95,6 +95,7 @@ module.exports = function (app) {
 
   // Route for adding a new country to the list
   app.post("/api/new_country", (req, res) => {
+    // verify if the country exist before create (look at Slack LA comment for help -BV)
     db.Countries.create({
       country_name: req.body.country_name,
       visited: req.body.visited,
@@ -113,6 +114,18 @@ module.exports = function (app) {
   // app.get("/api/new_country", (req, res) => {
   //   res.send("TEST WORKED!");
   // });
+
+  app.put("/api/visited", function(req, res) {
+console.log(req.body);
+    db.Countries.update({ visited: req.body.visited }, {
+      where: {
+        country_name: req.body.country_name
+      }
+    }).then(function(dbCountryVisited) {
+
+        res.json(dbCountryVisited);
+    })
+  });
 
   app.put("/api/desiredChange", function (req, res) {
     // Do I need to use the /:country_name above? In the client-side too?
