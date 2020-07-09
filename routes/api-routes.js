@@ -59,6 +59,18 @@ module.exports = function(app) {
     }
   });
 
+  app.delete("/api/new_country", function(req, res) {
+    console.log("country:");
+    console.log(req.params.countries)
+    country.destroy({
+      where: {
+        id: req.params.countries
+      }
+    }).then(function() {
+      res.end();
+    });
+  });
+};
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
