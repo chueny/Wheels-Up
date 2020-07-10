@@ -6,13 +6,12 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
-
+  // WE MIGHT NOT NEED THESE 2 (COMMENTED OUT) ANYMORE GIVEN HANDLEBARS BUT KEEP THEM HERE UNTIL WE KNOW FOR SURE -BV
   // app.get("/", (req, res) => {
 
   //   res.sendFile(path.join(__dirname, "../public/basiclayout.html"));
   // });
 
-  // // THIS ROUTE WON'T GET RUN AS LONG AS THE ONE ABOVE HAS THE SAME ROUTE AND COMES FIRST -BV
   // app.get("/", (req, res) => {
   //   // If the user already has an account send them to the members page
   //   if (req.user) {
