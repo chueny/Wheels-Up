@@ -122,14 +122,23 @@ module.exports = function (app) {
       });
   });
 
-  // THIS IS A TEST I USE TO MAKE SURE THE SERVER IS WORKING
-  // app.get("/api/new_country", (req, res) => {
-  //   res.send("TEST WORKED!");
-  // });
+  app.put("/api/desired", function(req, res) {
+  
+    // console.log(req.body);
+    db.Countries.update({ desired: req.body.desired }, {
+      where: {
+        country_name: req.body.country_name
+      }
+    }).then(function(dbCountryDesired) {
+
+        res.json(dbCountryDesired);
+    })
+  });
 
   app.put("/api/visited", function(req, res) {
-console.log(req.body);
-    db.Countries.update({ visited: req.body.visited }, {
+  
+    // console.log(req.body);
+    db.Countries.update({ visited: req.body.visited, desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
       }
@@ -139,19 +148,18 @@ console.log(req.body);
     })
   });
 
-  app.put("/api/desiredChange", function (req, res) {
-    // Do I need to use the /:country_name above? In the client-side too?
-    db.Countries.update({ desired: 1 }, {
+  app.put("/api/remove", function(req, res) {
+  
+    // console.log(req.body);
+    db.Countries.update({ visited: req.body.visited }, {
       where: {
         country_name: req.body.country_name
       }
-    }).then(function (dbCountryDesired) {
+    }).then(function(dbCountryRemoved) {
 
-      res.json(dbCountryDesired);
-      // res.status(200).end();
-    }
-    );
-
+        res.json(dbCountryRemoved);
+    })
   });
+
 };
 

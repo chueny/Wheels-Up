@@ -9,9 +9,6 @@ $(document).ready(function () {
         $("#toVisit").empty();
         $("#visited").empty();
 
-        // Next Step: make toVisitCountries allCountries and have the for loop put all the countries from the database in there
-        // and then to the same thing for desired countries as was done for visited countries
-
         const toVisitCountries = [];
         
         for (var i = 0; i < countries.length; i++) {
