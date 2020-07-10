@@ -93,6 +93,24 @@ module.exports = function (app) {
     })
   });
 
+
+
+  app.get("/", function (req, res) {
+
+    db.Countries.findAll({}).then(function (data) {
+      hbsObject = {
+        countries: data
+      };
+
+      res.render("index", hbsObject);
+    });
+  });
+
+
+
+
+
+
   // Route for adding a new country to the list
   app.post("/api/new_country", (req, res) => {
     // verify if the country exist before create (look at Slack LA comment for help -BV)
