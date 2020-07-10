@@ -47,7 +47,6 @@ module.exports = function (app) {
           countryName: req.params.countries,
           populationSize: req.params.population,
           countryRegion: req.params.region
-
         }
       }).then(function(dbCountry) {
         return res.json(dbCountry);
@@ -93,8 +92,6 @@ module.exports = function (app) {
     })
   });
 
-
-
   app.get("/", function (req, res) {
 
     db.Countries.findAll({}).then(function (data) {
@@ -102,14 +99,11 @@ module.exports = function (app) {
         countries: data
       };
 
+      console.log(hbsObject);
+
       res.render("index", hbsObject);
     });
   });
-
-
-
-
-
 
   // Route for adding a new country to the list
   app.post("/api/new_country", (req, res) => {
