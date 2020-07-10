@@ -18,7 +18,9 @@
       <div>
         <ul id="toVisit">
           {{#each countries}}
+            {{#if this.dataValues.desired}}
               <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+            {{/if}}
           {{/each}}
         </ul>
       </div>
