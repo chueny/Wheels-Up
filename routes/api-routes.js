@@ -122,10 +122,18 @@ module.exports = function (app) {
       });
   });
 
-  // THIS IS A TEST I USE TO MAKE SURE THE SERVER IS WORKING
-  // app.get("/api/new_country", (req, res) => {
-  //   res.send("TEST WORKED!");
-  // });
+  app.put("/api/desired", function(req, res) {
+  
+    // console.log(req.body);
+    db.Countries.update({ desired: req.body.desired }, {
+      where: {
+        country_name: req.body.country_name
+      }
+    }).then(function(dbCountryDesired) {
+
+        res.json(dbCountryDesired);
+    })
+  });
 
   app.put("/api/visited", function(req, res) {
   

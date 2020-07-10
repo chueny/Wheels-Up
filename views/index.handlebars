@@ -17,7 +17,7 @@
       <br>
 
       <div>
-        <ul id="toVisit">
+        <ul id="desired">
           {{#each countries}}
             {{#if this.dataValues.desired}}
               <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
@@ -34,7 +34,7 @@
         <ul id="visited">
           {{#each countries}}
             {{#if this.dataValues.visited}}
-              <li>{{this.dataValues.country_name}} <button class="addToVisited">Delete!</button></li>
+              <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
             {{/if}}
           {{/each}}
         </ul>
