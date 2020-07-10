@@ -47,7 +47,6 @@ module.exports = function (app) {
           countryName: req.params.countries,
           populationSize: req.params.population,
           countryRegion: req.params.region
-
         }
       }).then(function(dbCountry) {
         return res.json(dbCountry);
