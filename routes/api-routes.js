@@ -85,7 +85,7 @@ module.exports = function (app) {
   });
 
   // Route for getting countries and displaying to the page
-  app.get("/api/countries", function (req, res) {
+  app.get("/api/countries/az", function (req, res) {
 
     db.Countries.findAll({}).then(function (dbCountries) {
       res.json(dbCountries);
@@ -99,7 +99,7 @@ module.exports = function (app) {
         countries: data
       };
 
-      console.log(hbsObject);
+      // console.log("THIS:" + data[0].dataValues.country_name);
 
       res.render("index", hbsObject);
     });
