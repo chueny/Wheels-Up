@@ -52,28 +52,29 @@ $(document).ready(function () {
         let countryName = $(this).parent().text().slice(0,-11);
         console.log(countryName);
 
-        // //const visitedCountry = countryName;
+        //const visitedCountry = countryName;
 
-        // const visitedCountry = {
-        //     country_name: countryName,
-        //     visited: 1
-        // };
+        const visitedCountry = {
+            country_name: countryName,
+            visited: 1,
+            desired: 0
+        };
 
-        // addToVisited(visitedCountry);
+        addToVisited(visitedCountry);
 
-        // function addToVisited(countryObj) {
-        //     console.log(countryObj)
-        //     $.ajax({
-        //       method: "PUT",
-        //       url: "/api/visited",
-        //       data: countryObj
-        //     }).then(
-        //         function () {
-        //             console.log(countryName + " added to visited.");
-        //             location.reload();
-        //         }
-        //     );
-        // }
+        function addToVisited(countryObj) {
+            console.log(countryObj)
+            $.ajax({
+              method: "PUT",
+              url: "/api/visited",
+              data: countryObj
+            }).then(
+                function () {
+                    console.log(countryName + " added to visited.");
+                    location.reload();
+                }
+            );
+        }
     });
 
     // $(".addToDesired").on("submit", function (event) {

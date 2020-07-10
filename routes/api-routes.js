@@ -128,8 +128,9 @@ module.exports = function (app) {
   // });
 
   app.put("/api/visited", function(req, res) {
-console.log(req.body);
-    db.Countries.update({ visited: req.body.visited }, {
+  
+    // console.log(req.body);
+    db.Countries.update({ visited: req.body.visited, desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
       }
