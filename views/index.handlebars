@@ -26,5 +26,20 @@
       </div>
 
     </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <ul id="visited">
+          {{#each countries}}
+            {{#if this.dataValues.visited}}
+              <li>{{this.dataValues.country_name}} <button class="addToVisited">Delete!</button></li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>
+
   </div>
 </div>
