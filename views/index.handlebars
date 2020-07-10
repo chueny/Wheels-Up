@@ -16,9 +16,9 @@
       <div>
         <ul id="toVisit">
           {{#each countries}}
-            {{#if desired}}
-              {{> countries/country-block desired=true}}
-            {{/if}}
+            {{!-- <li>Hello</li> --}}
+              <li>{{this.Countries.dataValues.country_name}}</li>
+
           {{/each}}
         </ul>
       </div>

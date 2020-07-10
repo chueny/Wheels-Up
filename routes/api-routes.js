@@ -102,6 +102,8 @@ module.exports = function (app) {
         countries: data
       };
 
+      console.log(hbsObject);
+
       res.render("index", hbsObject);
     });
   });
