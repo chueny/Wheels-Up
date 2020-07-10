@@ -34,7 +34,6 @@ $(document).ready(function () {
     $(document).on("click", ".addToVisited", function(event){ 
         event.preventDefault();
 
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
         let countryName = $(this).parent().text().slice(0,-11);
         console.log(countryName);
 
@@ -61,32 +60,32 @@ $(document).ready(function () {
         }
     });
 
-    // $(".addToDesired").on("submit", function (event) {
-    //     event.preventDefautl();
+    $(document).on("click", ".removeCountry", function(event){ 
+        event.preventDefault();
 
-    //     let countryName = $(this).data("country_name");
-    //     console.log(this);
+        let countryName = $(this).parent().text().slice(0,-8);
+        console.log(countryName);
 
-    //     const newDesiredCountry = {
-    //         country_name: countryName,
-    //         desired: 1
-    //     };
+        const removedCountry = {
+            country_name: countryName,
+            visited: 0
+        };
 
-    //     console.log(newDesiredCountry);
-    //     // Send the PUT request.
-    //     updateDesired(newDesiredCountry);
+        removeCountry(removedCountry);
 
-    //     function updateDesired(newDesired) {
-    //         $.ajax({
-    //           method: "PUT",
-    //           url: "/api/desiredChange",
-    //           data: newDesired
-    //         }).then(
-    //             function () {
-    //                 console.log(countryName + " added to the desired list.");
-    //                 location.reload();
-    //             }
-    //         );
-    //     }
-    // });
+        function removeCountry(countryObj) {
+            console.log(countryObj)
+            $.ajax({
+              method: "PUT",
+              url: "/api/remove",
+              data: countryObj
+            }).then(
+                function () {
+                    console.log(countryName + " removed.");
+                    location.reload();
+                }
+            );
+        }
+    });
+
 });

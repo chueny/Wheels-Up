@@ -148,19 +148,18 @@ module.exports = function (app) {
     })
   });
 
-  app.put("/api/desiredChange", function (req, res) {
-    // Do I need to use the /:country_name above? In the client-side too?
-    db.Countries.update({ desired: 1 }, {
+  app.put("/api/remove", function(req, res) {
+  
+    // console.log(req.body);
+    db.Countries.update({ visited: req.body.visited }, {
       where: {
         country_name: req.body.country_name
       }
-    }).then(function (dbCountryDesired) {
+    }).then(function(dbCountryRemoved) {
 
-      res.json(dbCountryDesired);
-      // res.status(200).end();
-    }
-    );
-
+        res.json(dbCountryRemoved);
+    })
   });
+
 };
 
