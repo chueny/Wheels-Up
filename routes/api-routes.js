@@ -92,8 +92,6 @@ module.exports = function (app) {
     })
   });
 
-
-
   app.get("/", function (req, res) {
 
     db.Countries.findAll({}).then(function (data) {
@@ -106,11 +104,6 @@ module.exports = function (app) {
       res.render("index", hbsObject);
     });
   });
-
-
-
-
-
 
   // Route for adding a new country to the list
   app.post("/api/new_country", (req, res) => {
