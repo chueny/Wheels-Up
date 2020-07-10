@@ -16,9 +16,7 @@
       <div>
         <ul id="toVisit">
           {{#each countries}}
-            {{!-- <li>Hello</li> --}}
-              <li>{{this.Countries.dataValues.country_name}}</li>
-
+              <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
           {{/each}}
         </ul>
       </div>
