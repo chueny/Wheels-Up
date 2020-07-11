@@ -13,12 +13,3 @@ countries.includes('PE') === true
 
 
 
-module.exports {
-    [ 'CA',
-    'EG',
-    'ES',
-    'IT',
-    "PE"
-]
-
-};
