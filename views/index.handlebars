@@ -13,55 +13,7 @@
       </div>
     </div>
     
-    <div class="row">   
-
-    <div class="col-md-7">
-
-      <form>
-        <div class="form-group">
-          <i class="fas fa-plane-departure"></i>
-          <label for="inputNewCountry">Countries to explore:</label>
-          <input class="form-control" type="text" id="inputNewCountry" placeholder="The Moon">
-        </div>
-        <br>
-        <button type="button" class="btn btn-secondary">Submit</button>
-      </form>
-
-      <br>
-
-      <div>
-        <ul id="desired">
-          {{#each countries}}
-          {{#if this.dataValues.desired}}
-          <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
-          {{/if}}
-          {{/each}}
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="col-md-5">
-
-      <div>
-        <i class="fas fa-plane-arrival"></i>
-        <label for="inputNewCountry">Countries Visited:</label>
-        <ul id="visited">
-          {{#each countries}}
-          {{#if this.dataValues.visited}}
-          <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
-          {{/if}}
-          {{/each}}
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-
-  <hr>
-
-  <div class="row">
+<div class="row">
     <div class="col-md-6">
 
       <div>
@@ -110,6 +62,65 @@
         <ul id="countriesAtoZ"></ul>
       </div>
 
+
+
+
+
+
+
+
+
+
+
+    <div class="row">   
+
+    <div class="col-md-7">
+
+      <form>
+        <div class="form-group">
+          <i class="fas fa-plane-departure"></i>
+          <label for="inputNewCountry">Countries to explore:</label>
+          <input class="form-control" type="text" id="inputNewCountry" placeholder="The Moon">
+        </div>
+        <br>
+        <button type="button" class="btn btn-secondary">Submit</button>
+      </form>
+
+      <br>
+
+      <div>
+        <ul id="desired">
+          {{#each countries}}
+          {{#if this.dataValues.desired}}
+          <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="col-md-5">
+
+      <div>
+        <i class="fas fa-plane-arrival"></i>
+        <label for="inputNewCountry">Countries Visited:</label>
+        <ul id="visited">
+          {{#each countries}}
+          {{#if this.dataValues.visited}}
+          <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  
     </div>
 
     <div class="col-md-6">
