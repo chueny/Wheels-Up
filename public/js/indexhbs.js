@@ -134,7 +134,7 @@ $(document).ready(function () {
             
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))   
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
         }
 
         // Get request which gets all country data from the db (via the API route)
@@ -180,7 +180,7 @@ $(document).ready(function () {
             };
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + "</li>"))
+            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
 
         function getAllCountries() {
