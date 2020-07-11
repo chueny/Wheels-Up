@@ -118,55 +118,18 @@ $(document).ready(function () {
         }
     });
 
-
-
-    $(document).on("click", "#startsWithC", function(event){ 
+    $(document).on("click", ".alphaButton", function(event){ 
         event.preventDefault();
+        console.log("We are in the S submit");
+        //figure out what letter they click, need buttons value
+        let currentLetter= event.currentTarget.innerText;
+
+       // debugger;
+
 
         getAllCountries();
 
-        function letterCfunction() {
-            // Clears list of existing countries (if any)
-            $("#countriesAtoZ").empty();
-    
-            const allCountries = [];
-            
-            // Gets all the countries from the db and puts it into array allCountries
-            for (var i = 0; i < countries.length; i++) {
-                allCountries.push(countries[i]);
-            }
-    
-            const countriesC = [];
-    
-            // Filters through allCountries and puts countries into countriesC if it starts with "C"
-            for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name.startsWith("C") === true) {
-    
-                    countriesC.push(allCountries[i]);
-                }
-            };
-
-            // Creates a <li> for each country and appends it to the ul
-            countriesC.forEach(c => $("#countriesAtoZ").append("<li>" + c.country_name + "</li>"))
-        }
-    
-        function getAllCountries() {
-            $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
-                countries = data;
-                letterCfunction();
-            });
-        }
-
-    });
-
-    $(document).on("click", "#startsWithS", function(event){ 
-        event.preventDefault();
-
-        getAllCountries();
-
-        function letterSfunction() {
-
+        function filterByLetter() {
             $("#countriesAtoZ").empty();
     
             const allCountries = [];
@@ -174,32 +137,34 @@ $(document).ready(function () {
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-    
-            const countriesS = [];
-    
-            for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name.startsWith("S") === true) {
-    
-                    countriesS.push(allCountries[i]);
-                }
-            };
+        
+            //const filteredCountries = [];
 
-            countriesS.forEach(s => $("#countriesAtoZ").append("<li>" + s.country_name + "</li>"))
+        //const b = items.find((item) => item.name === 'b')
+        //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
+
+        const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true
+            //console.log("THIs is the current country", currentCountry);
+            //access object with property of country_name (currenty country is the variable that I am accessing);
+        );
+
+        // for (var i = 0; i < allCountries.length; i++) {
+        //     if (allCountries[i].country_name.startsWith(currentLetter) === true) {
+        //         filteredCountries.push(allCountries[i]);
+        //     }
+        // };
+        filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))
+            
         }
     
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
                 console.log(allCountries);
                 countries = data;
-                letterSfunction();
+                filterByLetter();
             });
         }
 
     });
-
-
-
-
-
 
 });
