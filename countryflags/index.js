@@ -1,5 +1,5 @@
-
 import COUNTRIES from './countries.json';
 export default function hasFlag(country) {
-  return COUNTRIES.indexOf(country) >= 0;
+    // We are going to retun every country that we have in our JSON file. 
+return COUNTRIES.indexOf(country) >= 0;
 }
