@@ -120,34 +120,21 @@ $(document).ready(function () {
 
     $(document).on("click", ".alphaButton", function(event){ 
         event.preventDefault();
-        console.log("We are in the S submit");
-        //figure out what letter they click, need buttons value
+        //figure out what letter is clicked, need the value of the button
         let currentLetter= event.currentTarget.innerText;
-
-       // debugger;
-
 
         getAllCountries();
 
         function filterByLetter() {
             $("#countriesAtoZ").empty();
-    
             const allCountries = [];
-            
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-        
-          
-            //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
-
-            const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true
-            //console.log("This is the current country", currentCountry);
-            //access object with property of country_name (currenty country is the variable that I am accessing);
-            );
-
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))
             
+            //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
+            const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))   
         }
     
         function getAllCountries() {
@@ -157,7 +144,5 @@ $(document).ready(function () {
                 filterByLetter();
             });
         }
-
     });
-
 });
