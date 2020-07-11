@@ -2,11 +2,11 @@ $(document).ready(function () {
 
     console.log("JS WORKING!");
 
-    $(document).on("click", ".addToDesired", function(event){ 
+    $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
         // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0,-12);
+        let countryName = $(this).parent().text().slice(0, -12);
         console.log(countryName);
 
         const desiredCountry = {
@@ -19,9 +19,9 @@ $(document).ready(function () {
         function addToDesired(countryObj) {
             console.log(countryObj)
             $.ajax({
-              method: "PUT",
-              url: "/api/desired",
-              data: countryObj
+                method: "PUT",
+                url: "/api/desired",
+                data: countryObj
             }).then(
                 function () {
                     console.log(countryName + " added to desired.");
@@ -31,10 +31,10 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", ".addToVisited", function(event){ 
+    $(document).on("click", ".addToVisited", function (event) {
         event.preventDefault();
 
-        let countryName = $(this).parent().text().slice(0,-11);
+        let countryName = $(this).parent().text().slice(0, -11);
         console.log(countryName);
 
         const visitedCountry = {
@@ -48,9 +48,9 @@ $(document).ready(function () {
         function addToVisited(countryObj) {
             console.log(countryObj)
             $.ajax({
-              method: "PUT",
-              url: "/api/visited",
-              data: countryObj
+                method: "PUT",
+                url: "/api/visited",
+                data: countryObj
             }).then(
                 function () {
                     console.log(countryName + " added to visited.");
@@ -60,10 +60,10 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", ".removeCountry", function(event){ 
+    $(document).on("click", ".removeCountry", function (event) {
         event.preventDefault();
 
-        let countryName = $(this).parent().text().slice(0,-8);
+        let countryName = $(this).parent().text().slice(0, -8);
         console.log(countryName);
 
         const removedCountry = {
@@ -76,9 +76,9 @@ $(document).ready(function () {
         function removeCountry(countryObj) {
             console.log(countryObj)
             $.ajax({
-              method: "PUT",
-              url: "/api/remove",
-              data: countryObj
+                method: "PUT",
+                url: "/api/remove",
+                data: countryObj
             }).then(
                 function () {
                     console.log(countryName + " removed.");
@@ -89,11 +89,11 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("click", ".addToDesired", function(event){ 
+    $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
         // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0,-12);
+        let countryName = $(this).parent().text().slice(0, -12);
         console.log(countryName);
 
         const desiredCountry = {
@@ -106,9 +106,9 @@ $(document).ready(function () {
         function addToDesired(countryObj) {
             console.log(countryObj)
             $.ajax({
-              method: "PUT",
-              url: "/api/desired",
-              data: countryObj
+                method: "PUT",
+                url: "/api/desired",
+                data: countryObj
             }).then(
                 function () {
                     console.log(countryName + " added to desired.");
@@ -117,89 +117,80 @@ $(document).ready(function () {
             );
         }
     });
-
-
-
-    $(document).on("click", "#startsWithC", function(event){ 
+  
+    $(document).on("click", ".alphaButton", function(event){ 
         event.preventDefault();
+        //figure out what letter is clicked, need the value of the button
+        let currentLetter= event.currentTarget.innerText;
 
         getAllCountries();
 
-        function letterCfunction() {
-            // Clears list of existing countries (if any)
+        function filterByLetter() {
             $("#countriesAtoZ").empty();
-    
             const allCountries = [];
+            for (var i = 0; i < countries.length; i++) {
+                allCountries.push(countries[i]);
+            }
             
+            //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
+            const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))   
+        }
+
+        // Get request which gets all country data from the db (via the API route)
+        function getAllCountries() {
+            $.get("/api/countries/az", function (data) {
+                console.log(allCountries);
+                countries = data;
+                filterByLetter();
+            });
+        }
+    });
+
+    // DISPLAYS COUNTRIES BY THEIR REGION
+
+    $(document).on("click", ".countryRegion", function (event) {
+        event.preventDefault();
+
+        let selectedRegion = $(this).html();
+
+        console.log(selectedRegion);
+
+        getAllCountries();
+
+        function displayByRegion() {
+
+            $("#countriesByRegion").empty();
+
+            const allCountries = [];
+
             // Gets all the countries from the db and puts it into array allCountries
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-    
-            const countriesC = [];
-    
-            // Filters through allCountries and puts countries into countriesC if it starts with "C"
+
+            const countriesOfChosenRegion = [];
+
+            // Filters through allCountries and puts countries into countriesOfChosenRegion if its region matches the text of the button
             for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name.startsWith("C") === true) {
-    
-                    countriesC.push(allCountries[i]);
+                if (allCountries[i].region === selectedRegion) {
+
+                    countriesOfChosenRegion.push(allCountries[i]);
                 }
             };
 
             // Creates a <li> for each country and appends it to the ul
-            countriesC.forEach(c => $("#countriesAtoZ").append("<li>" + c.country_name + "</li>"))
+            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + "</li>"))
         }
-    
+
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
                 console.log(allCountries);
                 countries = data;
-                letterCfunction();
+                displayByRegion();
             });
         }
 
     });
-
-    $(document).on("click", "#startsWithS", function(event){ 
-        event.preventDefault();
-
-        getAllCountries();
-
-        function letterSfunction() {
-
-            $("#countriesAtoZ").empty();
-    
-            const allCountries = [];
-            
-            for (var i = 0; i < countries.length; i++) {
-                allCountries.push(countries[i]);
-            }
-    
-            const countriesS = [];
-    
-            for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name.startsWith("S") === true) {
-    
-                    countriesS.push(allCountries[i]);
-                }
-            };
-
-            countriesS.forEach(s => $("#countriesAtoZ").append("<li>" + s.country_name + "</li>"))
-        }
-    
-        function getAllCountries() {
-            $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
-                countries = data;
-                letterSfunction();
-            });
-        }
-
-    });
-
-
-
-
-
 
 });

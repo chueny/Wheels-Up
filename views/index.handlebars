@@ -26,15 +26,15 @@
         <br>
         <button type="button" class="btn btn-secondary">Submit</button>
       </form>
-      
+
       <br>
 
       <div>
         <ul id="desired">
           {{#each countries}}
-            {{#if this.dataValues.desired}}
-              <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
-            {{/if}}
+          {{#if this.dataValues.desired}}
+          <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+          {{/if}}
           {{/each}}
         </ul>
       </div>
@@ -44,13 +44,13 @@
     <div class="col-md-5">
 
       <div>
-       <i class="fas fa-plane-arrival"></i>
+        <i class="fas fa-plane-arrival"></i>
         <label for="inputNewCountry">Countries Visited:</label>
         <ul id="visited">
           {{#each countries}}
-            {{#if this.dataValues.visited}}
-              <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
-            {{/if}}
+          {{#if this.dataValues.visited}}
+          <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
+          {{/if}}
           {{/each}}
         </ul>
       </div>
@@ -62,48 +62,48 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
 
       <div>
         <ul id="allCountries">
           {{#each countries}}
-              <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-              {{!-- <li>{{this.dataValues.population}} </li> --}}
+          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          {{!-- <li>{{this.dataValues.population}} </li> --}}
           {{/each}}
         </ul>
       </div>
 
       <div>
         <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
-        <button id="startsWithA">A</button>
-        <button id="startsWithB">B</button>
-        <button id="startsWithC">C</button>
-        <button id="startsWithD">D</button>
-        <button id="startsWithE">E</button>
-        <button id="startsWithF">F</button>
-        <button id="startsWithG">G</button>
-        <button id="startsWithH">H</button>
-        <button id="startsWithI">I</button>
-        <button id="startsWithJ">J</button>
-        <button id="startsWithK">K</button>
-        <button id="startsWithL">L</button>
-        <button id="startsWithM">M</button>
+        <button class="alphaButton">A</button>
+        <button class="alphaButton">B</button>
+        <button class="alphaButton">C</button>
+        <button class="alphaButton">D</button>
+        <button class="alphaButton">E</button>
+        <button class="alphaButton">F</button>
+        <button class="alphaButton">G</button>
+        <button class="alphaButton">H</button>
+        <button class="alphaButton">I</button>
+        <button class="alphaButton">J</button>
+        <button class="alphaButton">K</button>
+        <button class="alphaButton">L</button>
+        <button class="alphaButton">M</button>
       </div>
 
       <div>
-        <button id="startsWithN">N</button>
-        <button id="startsWithO">O</button>
-        <button id="startsWithP">P</button>
-        <button id="startsWithQ">Q</button>
-        <button id="startsWithR">R</button>
-        <button id="startsWithS">S</button>
-        <button id="startsWithT">T</button>
-        <button id="startsWithU">U</button>
-        <button id="startsWithV">V</button>
-        <button id="startsWithW">W</button>
-        <button id="startsWithX">X</button>
-        <button id="startsWithY">Y</button>
-        <button id="startsWithZ">Z</button>
+        <button class="alphaButton">N</button>
+        <button class="alphaButton">O</button>
+        <button class="alphaButton">P</button>
+        <button class="alphaButton">Q</button>
+        <button class="alphaButton">R</button>
+        <button class="alphaButton">S</button>
+        <button class="alphaButton">T</button>
+        <button class="alphaButton">U</button>
+        <button class="alphaButton">V</button>
+        <button class="alphaButton">W</button>
+        <button class="alphaButton">X</button>
+        <button class="alphaButton">Y</button>
+        <button class="alphaButton">Z</button>
       </div>
 
       <div>
@@ -111,6 +111,30 @@
       </div>
 
     </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <button class="countryRegion">NORTHERN AMERICA</button>
+        <button class="countryRegion">WESTERN EUROPE</button>
+        <button class="countryRegion">EASTERN EUROPE</button>
+        <button class="countryRegion">NORTHERN AFRICA</button>
+        <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
+        <button class="countryRegion">OCEANIA</button>
+        <button class="countryRegion">SUB-SAHARAN AFRICA</button>
+        <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
+        <button class="countryRegion">C.W. OF IND. STATES</button>
+        <button class="countryRegion">NEAR EAST</button>
+        <button class="countryRegion">BALTICS</button>
+      </div>
+
+
+      <div>
+        <ul id="countriesByRegion"></ul>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
