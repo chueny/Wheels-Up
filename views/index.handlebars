@@ -13,15 +13,15 @@
         <br>
         <button type="button" class="btn btn-secondary">Submit</button>
       </form>
-      
+
       <br>
 
       <div>
         <ul id="desired">
           {{#each countries}}
-            {{#if this.dataValues.desired}}
-              <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
-            {{/if}}
+          {{#if this.dataValues.desired}}
+          <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+          {{/if}}
           {{/each}}
         </ul>
       </div>
@@ -31,13 +31,13 @@
     <div class="col-md-5">
 
       <div>
-       <i class="fas fa-plane-arrival"></i>
+        <i class="fas fa-plane-arrival"></i>
         <label for="inputNewCountry">Countries Visited:</label>
         <ul id="visited">
           {{#each countries}}
-            {{#if this.dataValues.visited}}
-              <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
-            {{/if}}
+          {{#if this.dataValues.visited}}
+          <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
+          {{/if}}
           {{/each}}
         </ul>
       </div>
@@ -49,12 +49,13 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
 
       <div>
         <ul id="allCountries">
           {{#each countries}}
-              <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          {{!-- <li>{{this.dataValues.population}} </li> --}}
           {{/each}}
         </ul>
       </div>
@@ -97,6 +98,21 @@
       </div>
 
     </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <button id="regionNorthernAmerica">NORTHERN AMERICA</button>
+        <button id="regionWesternEurope">WESTERN EUROPE</button>
+      </div>
+
+
+      <div>
+        <ul id="countriesByRegion"></ul>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
