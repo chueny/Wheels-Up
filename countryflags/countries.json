@@ -1,6 +1,6 @@
-[ "CA",
-    "EG",
-    "ES",
-    "IT",
-    "PE"
-]
+{ "CA": "Canada",
+    "EG": "Egypt",
+    "ES": "Spain",
+    "IT": "Italy",
+    "PE": "Peru"
+}
