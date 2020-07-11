@@ -1,12 +1,18 @@
+
 h1 {
   font-weight: bold;
   text-align: center;
   margin: 25px;
+  font-family: 'Playfair Display', serif;
+  font-size: 75px;
+
 }
 
 h5 {
   text-align: center;
   margin-bottom: 50px;
+  font-family: 'Playfair Display', serif;
+
 }
 
 img {
@@ -20,5 +26,10 @@ img {
 
 .inputNewCountry {
 size: 100px;
+
+}
+
+body {
+  font-family: 'Playfair Display', serif;
 
 }
