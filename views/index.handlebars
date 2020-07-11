@@ -1,19 +1,18 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6">
-      <h1>Wheels Up!</h1>
-      <h3>The App that helps to keep track of countries previously visited and countries to still explore!</h3>
+
+    <div class="col-md-7">
 
       <form>
         <div class="form-group">
-          <label for="inputNewCountry">Countries to visit:</label>
+          <label for="inputNewCountry">Countries to explore:</label>
           <input class="form-control" type="text" id="inputNewCountry" placeholder="Mars">
         </div>
         <br>
-        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-secondary">Submit</button>
       </form>
-
+      
       <br>
 
       <div>
@@ -28,9 +27,10 @@
 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-5">
 
       <div>
+        <label for="inputNewCountry">Countries Visited:</label>
         <ul id="visited">
           {{#each countries}}
             {{#if this.dataValues.visited}}
@@ -53,6 +53,7 @@
         <ul id="allCountries">
           {{#each countries}}
               <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+              {{!-- <li>{{this.dataValues.population}} </li> --}}
           {{/each}}
         </ul>
       </div>

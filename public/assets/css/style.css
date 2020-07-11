@@ -1,7 +1,7 @@
 h1 {
   font-weight: bold;
   text-align: center;
-  margin: 50px;
+  margin: 25px;
 }
 
 h5 {
@@ -16,4 +16,9 @@ img {
   margin-bottom: 50px;
   width: 100%;
   height: auto;
+}
+
+.inputNewCountry {
+size: 100px;
+
 }
