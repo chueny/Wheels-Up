@@ -138,22 +138,15 @@ $(document).ready(function () {
                 allCountries.push(countries[i]);
             }
         
-            //const filteredCountries = [];
+          
+            //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
 
-        //const b = items.find((item) => item.name === 'b')
-        //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
-
-        const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true
-            //console.log("THIs is the current country", currentCountry);
+            const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true
+            //console.log("This is the current country", currentCountry);
             //access object with property of country_name (currenty country is the variable that I am accessing);
-        );
+            );
 
-        // for (var i = 0; i < allCountries.length; i++) {
-        //     if (allCountries[i].country_name.startsWith(currentLetter) === true) {
-        //         filteredCountries.push(allCountries[i]);
-        //     }
-        // };
-        filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + "</li>"))
             
         }
     
