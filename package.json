@@ -19,7 +19,11 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.0.0",
     "express-session": "^1.16.1",
+<<<<<<< HEAD
     "mysql": "^2.18.1",
+=======
+    "lodash": "^4.17.19",
+>>>>>>> f7931ae268e3175deb623833e8fdc6b736163c2a
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
