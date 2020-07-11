@@ -197,7 +197,47 @@ $(document).ready(function () {
 
     });
 
+    // Working on Searching by Region IN PROGRESS
 
+    $(document).on("click", "#regionNorthernAmerica", function(event){ 
+        event.preventDefault();
+
+        getAllCountries();
+
+        function northernAmerica() {
+            // Clears list of existing countries (if any)
+            $("#countriesByRegion").empty();
+    
+            const allCountries = [];
+            
+            // Gets all the countries from the db and puts it into array allCountries
+            for (var i = 0; i < countries.length; i++) {
+                allCountries.push(countries[i]);
+            }
+    
+            const countriesNorthernAmerica = [];
+    
+            // Filters through allCountries and puts countries into countriesC if it starts with "C"
+            for (var i = 0; i < allCountries.length; i++) {
+                if (allCountries[i].region === "NORTHERN AMERICA") {
+    
+                    countriesNorthernAmerica.push(allCountries[i]);
+                }
+            };
+
+            // Creates a <li> for each country and appends it to the ul
+            countriesNorthernAmerica.forEach(na => $("#countriesByRegion").append("<li>" + na.country_name + "</li>"))
+        }
+    
+        function getAllCountries() {
+            $.get("/api/countries/az", function (data) {
+                console.log(allCountries);
+                countries = data;
+                northernAmerica();
+            });
+        }
+
+    });
 
 
 
