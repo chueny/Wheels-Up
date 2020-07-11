@@ -1,15 +1,9 @@
-let  countryFlagIcons = require("country-flag-icons");
 
-import { countries } from 'country-flag-icons'
+//var countryFlagIcons = require("country-flag-icons")
 
-
-
-countries.includes('CA') === true
-countries.includes('EG') === true
-countries.includes('ES') === true
-countries.includes('IT') === true
-countries.includes('PE') === true
-
-
-
-
+var country = 'CA';
+function countryFlags() {
+  document.getElementById("countryFlags")
+  alt="Canada"
+  src = "http://catamphetamine.gitlab.io/country-flag-icons/3x2/" + country + ".svg";
+}
