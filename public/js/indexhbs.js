@@ -200,79 +200,122 @@ $(document).ready(function () {
 
     // DISPLAYS COUNTRIES BY THEIR REGION (first function explains the rest)
 
-    $(document).on("click", "#regionNorthernAmerica", function (event) {
+    // $(document).on("click", "#regionNorthernAmerica", function (event) {
+    //     event.preventDefault();
+
+    //     getAllCountries();
+
+    //     function northernAmerica() {
+    //         // Clears list of existing countries (if any)
+    //         $("#countriesByRegion").empty();
+
+    //         const allCountries = [];
+
+    //         // Gets all the countries from the db and puts it into array allCountries
+    //         for (var i = 0; i < countries.length; i++) {
+    //             allCountries.push(countries[i]);
+    //         }
+
+    //         const countriesNorthernAmerica = [];
+
+    //         // Filters through allCountries and puts countries into countriesNorthernAmerica if its region is NORTHERN AMERICA
+    //         for (var i = 0; i < allCountries.length; i++) {
+    //             if (allCountries[i].region === "NORTHERN AMERICA") {
+
+    //                 countriesNorthernAmerica.push(allCountries[i]);
+    //             }
+    //         };
+
+    //         // Creates a <li> for each country and appends it to the ul
+    //         countriesNorthernAmerica.forEach(na => $("#countriesByRegion").append("<li>" + na.country_name + "</li>"))
+    //     }
+
+    //     // Get request which gets all country data from the db (via the API route)
+    //     function getAllCountries() {
+    //         $.get("/api/countries/az", function (data) {
+    //             console.log(allCountries);
+    //             countries = data;
+    //             northernAmerica();
+    //         });
+    //     }
+
+    // });
+
+    // $(document).on("click", "#regionWesternEurope", function (event) {
+    //     event.preventDefault();
+
+    //     getAllCountries();
+
+    //     function westernEurope() {
+
+    //         $("#countriesByRegion").empty();
+
+    //         const allCountries = [];
+
+    //         for (var i = 0; i < countries.length; i++) {
+    //             allCountries.push(countries[i]);
+    //         }
+
+    //         const countriesWesternEurope = [];
+
+    //         for (var i = 0; i < allCountries.length; i++) {
+    //             if (allCountries[i].region === "WESTERN EUROPE") {
+
+    //                 countriesWesternEurope.push(allCountries[i]);
+    //             }
+    //         };
+
+    //         countriesWesternEurope.forEach(we => $("#countriesByRegion").append("<li>" + we.country_name + "</li>"))
+    //     }
+
+    //     function getAllCountries() {
+    //         $.get("/api/countries/az", function (data) {
+    //             console.log(allCountries);
+    //             countries = data;
+    //             westernEurope();
+    //         });
+    //     }
+
+    // });
+
+    ///// TESTING ONE FUNCTION FOR ALL
+
+    $(document).on("click", ".countryRegion", function (event) {
         event.preventDefault();
+
+        let selectedRegion = $(this).html();
+
+        console.log(selectedRegion);
 
         getAllCountries();
 
-        function northernAmerica() {
-            // Clears list of existing countries (if any)
+        function displayByRegion() {
+
             $("#countriesByRegion").empty();
 
             const allCountries = [];
 
-            // Gets all the countries from the db and puts it into array allCountries
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
-            const countriesNorthernAmerica = [];
+            const countriesOfChosenRegion = [];
 
-            // Filters through allCountries and puts countries into countriesNorthernAmerica if its region is NORTHERN AMERICA
             for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].region === "NORTHERN AMERICA") {
+                if (allCountries[i].region === selectedRegion) {
 
-                    countriesNorthernAmerica.push(allCountries[i]);
+                    countriesOfChosenRegion.push(allCountries[i]);
                 }
             };
 
-            // Creates a <li> for each country and appends it to the ul
-            countriesNorthernAmerica.forEach(na => $("#countriesByRegion").append("<li>" + na.country_name + "</li>"))
-        }
-
-        // Get request which gets all country data from the db (via the API route)
-        function getAllCountries() {
-            $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
-                countries = data;
-                northernAmerica();
-            });
-        }
-
-    });
-
-    $(document).on("click", "#regionWesternEurope", function (event) {
-        event.preventDefault();
-
-        getAllCountries();
-
-        function westernEurope() {
-
-            $("#countriesByRegion").empty();
-
-            const allCountries = [];
-
-            for (var i = 0; i < countries.length; i++) {
-                allCountries.push(countries[i]);
-            }
-
-            const countriesWesternEurope = [];
-
-            for (var i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].region === "WESTERN EUROPE") {
-
-                    countriesWesternEurope.push(allCountries[i]);
-                }
-            };
-
-            countriesWesternEurope.forEach(we => $("#countriesByRegion").append("<li>" + we.country_name + "</li>"))
+            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + "</li>"))
         }
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
                 console.log(allCountries);
                 countries = data;
-                westernEurope();
+                displayByRegion();
             });
         }
 
