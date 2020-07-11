@@ -10,10 +10,10 @@ h1 {
 
 h4{
   font-weight: bold;
-  text-align: center middle;
-  margin: 30px;
-  font-family: 'Playfair Display' serif;
-  font-size: 30px;
+  text-align: center;
+  line-height: 90px;
+  vertical-align: middle 
+  
 
 }
 
