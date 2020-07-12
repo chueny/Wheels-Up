@@ -88,6 +88,37 @@ $(document).ready(function () {
         }
     });
 
+
+    $(document).on("click", ".addToDesired", function (event) {
+        event.preventDefault();
+
+        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
+        let countryName = $(this).parent().text().slice(0, -12);
+        console.log(countryName);
+
+        const desiredCountry = {
+            country_name: countryName,
+            desired: 1
+        };
+
+        addToDesired(desiredCountry);
+
+        function addToDesired(countryObj) {
+            console.log(countryObj)
+            $.ajax({
+                method: "PUT",
+                url: "/api/desired",
+                data: countryObj
+            }).then(
+                function () {
+                    console.log(countryName + " added to desired.");
+                    location.reload();
+                }
+            );
+        }
+    });
+
+
     // THE BELOW CODE IS REDUNANT
     // $(document).on("click", ".addToDesired", function (event) {
     //     event.preventDefault();
@@ -118,12 +149,13 @@ $(document).ready(function () {
     //     }
     // });
   
+
     // DISPLAYS COUNTRIES BY FIRST LETTER
 
-    $(document).on("click", ".alphaButton", function(event){ 
+    $(document).on("click", ".alphaButton", function (event) {
         event.preventDefault();
         //figure out what letter is clicked, need the value of the button
-        let currentLetter= event.currentTarget.innerText;
+        let currentLetter = event.currentTarget.innerText;
 
         getAllCountries();
 
@@ -133,13 +165,11 @@ $(document).ready(function () {
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-            
+
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`)) 
-            //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
 
-
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
 
         // Get request which gets all country data from the db (via the API route)
@@ -231,7 +261,7 @@ $(document).ready(function () {
     $(document).on("submit", "#countrySearchForm", function (event) {
         event.preventDefault();
 
-        let countrySearched = $("#countrySearch").val();
+        let countrySearched = $("#countrySearch").val().trim();
 
         console.log(countrySearched);
 
@@ -258,6 +288,12 @@ $(document).ready(function () {
                 }
             };
 
+            // Checks if any countries matched and throws error message if not
+            if (countryMatchedSearch.length === 0) {
+
+                alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
+            }
+
             // Creates a <li> for each country and appends it to the ul
             countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
@@ -277,7 +313,7 @@ $(document).ready(function () {
     $(document).on("click", "#countrySearchBtn", function (event) {
         event.preventDefault();
 
-        let countrySearched = $("#countrySearch").val();
+        let countrySearched = $("#countrySearch").val().trim();
 
         console.log(countrySearched);
 
@@ -301,6 +337,11 @@ $(document).ready(function () {
                     countryMatchedSearch.push(allCountries[i]);
                 }
             };
+
+            if (countryMatchedSearch.length === 0) {
+
+                alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
+            }
 
             countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
