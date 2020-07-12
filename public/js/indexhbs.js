@@ -118,6 +118,8 @@ $(document).ready(function () {
     //     }
     // });
   
+    // DISPLAYS COUNTRIES BY FIRST LETTER
+
     $(document).on("click", ".alphaButton", function(event){ 
         event.preventDefault();
         //figure out what letter is clicked, need the value of the button
@@ -219,6 +221,95 @@ $(document).ready(function () {
                 console.log(allCountries);
                 countries = data;
                 displayByRegion();
+            });
+        }
+
+    });
+
+    // FINDS COUNTRY BY SEARCH INPUT (enter key)
+
+    $(document).on("submit", "#countrySearchForm", function (event) {
+        event.preventDefault();
+
+        let countrySearched = $("#countrySearch").val();
+
+        console.log(countrySearched);
+
+        getAllCountries();
+
+        function countrySearch() {
+
+            $("#countrySearchResult").empty();
+
+            const allCountries = [];
+
+            // Gets all the countries from the db and puts it into array allCountries
+            for (var i = 0; i < countries.length; i++) {
+                allCountries.push(countries[i]);
+            }
+
+            const countryMatchedSearch = [];
+
+            // Filters through allCountries and puts countries into countryMatchedSearch if it matches the search value
+            for (var i = 0; i < allCountries.length; i++) {
+                if (allCountries[i].country_name === countrySearched) {
+
+                    countryMatchedSearch.push(allCountries[i]);
+                }
+            };
+
+            // Creates a <li> for each country and appends it to the ul
+            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+        }
+
+        function getAllCountries() {
+            $.get("/api/countries/az", function (data) {
+                console.log(allCountries);
+                countries = data;
+                countrySearch();
+            });
+        }
+
+    });
+
+    // FINDS COUNTRY BY SEARCH INPUT (button click)
+
+    $(document).on("click", "#countrySearchBtn", function (event) {
+        event.preventDefault();
+
+        let countrySearched = $("#countrySearch").val();
+
+        console.log(countrySearched);
+
+        getAllCountries();
+
+        function countrySearch() {
+
+            $("#countrySearchResult").empty();
+
+            const allCountries = [];
+
+            for (var i = 0; i < countries.length; i++) {
+                allCountries.push(countries[i]);
+            }
+
+            const countryMatchedSearch = [];
+
+            for (var i = 0; i < allCountries.length; i++) {
+                if (allCountries[i].country_name === countrySearched) {
+
+                    countryMatchedSearch.push(allCountries[i]);
+                }
+            };
+
+            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+        }
+
+        function getAllCountries() {
+            $.get("/api/countries/az", function (data) {
+                console.log(allCountries);
+                countries = data;
+                countrySearch();
             });
         }
 
