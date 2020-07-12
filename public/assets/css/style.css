@@ -49,4 +49,5 @@ body {
 
 #flags{
   display: flex;
+  flex-wrap: wrap;
 }
