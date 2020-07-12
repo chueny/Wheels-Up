@@ -10,74 +10,11 @@
       <h1>Wheels Up!</h1>
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
-    <div class="row">
-      <div class="col-md">
-        <h1>Wheels Up!</h1>
-        <h5>The travel app that tracks countries visited and countries left to explore!</h5>
-    </div>
-      </div>
-    </div>
-    
-<div class="row">
-    <div class="col-md-6">
-
-      <div>
-        <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
-        <button class="alphaButton">A</button>
-        <button class="alphaButton">B</button>
-        <button class="alphaButton">C</button>
-        <button class="alphaButton">D</button>
-        <button class="alphaButton">E</button>
-        <button class="alphaButton">F</button>
-        <button class="alphaButton">G</button>
-        <button class="alphaButton">H</button>
-        <button class="alphaButton">I</button>
-        <button class="alphaButton">J</button>
-        <button class="alphaButton">K</button>
-        <button class="alphaButton">L</button>
-        <button class="alphaButton">M</button>
-      </div>
-
-      <div>
-        <button class="alphaButton">N</button>
-        <button class="alphaButton">O</button>
-        <button class="alphaButton">P</button>
-        <button class="alphaButton">Q</button>
-        <button class="alphaButton">R</button>
-        <button class="alphaButton">S</button>
-        <button class="alphaButton">T</button>
-        <button class="alphaButton">U</button>
-        <button class="alphaButton">V</button>
-        <button class="alphaButton">W</button>
-        <button class="alphaButton">X</button>
-        <button class="alphaButton">Y</button>
-        <button class="alphaButton">Z</button>
-      </div>
-
-
-    <div>
-        <ul id="countriesAtoZ"></ul>
-    </div>
-
-  {{!-- MAY NEED A PLACE TO DISPLAY CARDS --}}
-    <div id="showCountryCard"> 
-      
-    </div>
-
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-
-    <div>
-      <ul id="allCountries">
-        {{#each countries}}
-        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-        {{!-- <li>{{this.dataValues.population}} </li> --}}
-        {{/each}}
-      </ul>
-    </div>
 
     <div>
       <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
@@ -96,12 +33,6 @@
       <button class="alphaButton">M</button>
     </div>
 
-<<<<<<< HEAD
-  
-
-
-
-=======
     <div>
       <button class="alphaButton">N</button>
       <button class="alphaButton">O</button>
@@ -117,8 +48,10 @@
       <button class="alphaButton">Y</button>
       <button class="alphaButton">Z</button>
     </div>
->>>>>>> 16d59cfb720af0c054837914efc115d5c624d6df
 
+    <div id="showCountryCard"> 
+    </div>
+    
     <div>
       <ul id="countriesAtoZ"></ul>
     </div>
@@ -195,25 +128,20 @@
     </div>
 
 
-<<<<<<< HEAD
-
-       <div>
-        <ul id="allCountries">
-        <h3> THIS IS JUST A LIST OF ALL THE COUNTRIES</h3> 
-          {{#each countries}}
-          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-          {{!-- <li>{{this.dataValues.population}} </li> --}}
-          {{/each}}
-        </ul>
-      </div>
-
-
-
-=======
     <div>
       <ul id="countriesByRegion"></ul>
->>>>>>> 16d59cfb720af0c054837914efc115d5c624d6df
     </div>
+
+   <div>
+      <ul id="allCountries">
+        {{#each countries}}
+        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+        {{!-- <li>{{this.dataValues.population}} </li> --}}
+        {{/each}}
+      </ul>
+    </div>
+
+
 
   </div>
 
