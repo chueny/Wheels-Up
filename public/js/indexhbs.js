@@ -88,35 +88,35 @@ $(document).ready(function () {
         }
     });
 
+    // THE BELOW CODE IS REDUNANT
+    // $(document).on("click", ".addToDesired", function (event) {
+    //     event.preventDefault();
 
-    $(document).on("click", ".addToDesired", function (event) {
-        event.preventDefault();
+    //     // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
+    //     let countryName = $(this).parent().text().slice(0, -12);
+    //     console.log(countryName);
 
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
-        console.log(countryName);
+    //     const desiredCountry = {
+    //         country_name: countryName,
+    //         desired: 1
+    //     };
 
-        const desiredCountry = {
-            country_name: countryName,
-            desired: 1
-        };
+    //     addToDesired(desiredCountry);
 
-        addToDesired(desiredCountry);
-
-        function addToDesired(countryObj) {
-            console.log(countryObj)
-            $.ajax({
-                method: "PUT",
-                url: "/api/desired",
-                data: countryObj
-            }).then(
-                function () {
-                    console.log(countryName + " added to desired.");
-                    location.reload();
-                }
-            );
-        }
-    });
+    //     function addToDesired(countryObj) {
+    //         console.log(countryObj)
+    //         $.ajax({
+    //             method: "PUT",
+    //             url: "/api/desired",
+    //             data: countryObj
+    //         }).then(
+    //             function () {
+    //                 console.log(countryName + " added to desired.");
+    //                 location.reload();
+    //             }
+    //         );
+    //     }
+    // });
   
     // DISPLAYS COUNTRIES BY FIRST LETTER
 
@@ -136,7 +136,10 @@ $(document).ready(function () {
             
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`)) 
+            //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
+
+
         }
 
         // Get request which gets all country data from the db (via the API route)
@@ -148,6 +151,34 @@ $(document).ready(function () {
             });
         }
     });
+
+    //DISPLAYS MORE INFO ABOUT THE COUNTRIES
+
+    $(document).on("click", ".moreInfo", function(event){ 
+        event.preventDefault();
+        
+        console.log("I AM IN THE moreINFO function!");
+
+        $("#showCountryCard").empty();
+
+        var large = '<div class="card"> <div class="card-header"> COUNTRY NAME </div> <div class="card-body"><h5 class="card-title"></h5><p class="card-text">Three reasons to visit COUNTRY_NAME:</p> <p>Population: NEED POP</p><p>Region: NEED REGION </p><button class="addToDesired">Add to List</button></div></div>';
+        $("#showCountryCard").append(large);
+
+        // document.getElementById("#showCountryCard"").innerHTML +=  
+        //       "<h3>This is the text which has been inserted by JS</h3>"; 
+       //$("#showCountryCard").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`);
+
+
+
+
+
+        
+
+    });
+
+
+
+
 
     // DISPLAYS COUNTRIES BY THEIR REGION
 
