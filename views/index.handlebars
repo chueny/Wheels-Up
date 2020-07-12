@@ -17,15 +17,6 @@
     <div class="col-md-6">
 
       <div>
-        <ul id="allCountries">
-          {{#each countries}}
-          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-          {{!-- <li>{{this.dataValues.population}} </li> --}}
-          {{/each}}
-        </ul>
-      </div>
-
-      <div>
         <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
         <button class="alphaButton">A</button>
         <button class="alphaButton">B</button>
@@ -58,10 +49,20 @@
         <button class="alphaButton">Z</button>
       </div>
 
-      <div>
-        <ul id="countriesAtoZ"></ul>
-      </div>
 
+    <div>
+        <ul id="countriesAtoZ"></ul>
+    </div>
+
+  {{!-- MAY NEED A PLACE TO DISPLAY CARDS --}}
+    <div id="showCountryCard"> 
+      
+    </div>
+
+
+
+
+  
 
 
 
@@ -143,6 +144,19 @@
       <div>
         <ul id="countriesByRegion"></ul>
       </div>
+
+
+       <div>
+        <ul id="allCountries">
+        <h3> THIS IS JUST A LIST OF ALL THE COUNTRIES</h3> 
+          {{#each countries}}
+          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          {{!-- <li>{{this.dataValues.population}} </li> --}}
+          {{/each}}
+        </ul>
+      </div>
+
+
 
     </div>
 
