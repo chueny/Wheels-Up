@@ -46,3 +46,7 @@ body {
   padding: 20px;
 
 }
+
+#flags{
+  display: flex;
+}
