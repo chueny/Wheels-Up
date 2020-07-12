@@ -200,7 +200,7 @@ $(document).ready(function () {
     $(document).on("submit", "#countrySearchForm", function (event) {
         event.preventDefault();
 
-        let countrySearched = $("#countrySearch").val();
+        let countrySearched = $("#countrySearch").val().trim();
 
         console.log(countrySearched);
 
@@ -246,7 +246,7 @@ $(document).ready(function () {
     $(document).on("click", "#countrySearchBtn", function (event) {
         event.preventDefault();
 
-        let countrySearched = $("#countrySearch").val();
+        let countrySearched = $("#countrySearch").val().trim();
 
         console.log(countrySearched);
 
