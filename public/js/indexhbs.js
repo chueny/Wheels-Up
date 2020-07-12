@@ -117,13 +117,13 @@ $(document).ready(function () {
             );
         }
     });
-  
+
     // DISPLAYS COUNTRIES BY FIRST LETTER
 
-    $(document).on("click", ".alphaButton", function(event){ 
+    $(document).on("click", ".alphaButton", function (event) {
         event.preventDefault();
         //figure out what letter is clicked, need the value of the button
-        let currentLetter= event.currentTarget.innerText;
+        let currentLetter = event.currentTarget.innerText;
 
         getAllCountries();
 
@@ -133,10 +133,10 @@ $(document).ready(function () {
             for (var i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-            
+
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
 
         // Get request which gets all country data from the db (via the API route)
@@ -227,6 +227,12 @@ $(document).ready(function () {
                 }
             };
 
+            // Checks if any countries matched and throws error message if not
+            if (countryMatchedSearch.length === 0) {
+
+                alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
+            }
+
             // Creates a <li> for each country and appends it to the ul
             countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
@@ -270,6 +276,11 @@ $(document).ready(function () {
                     countryMatchedSearch.push(allCountries[i]);
                 }
             };
+
+            if (countryMatchedSearch.length === 0) {
+
+                alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
+            }
 
             countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
         }
