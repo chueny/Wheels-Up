@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    console.log("JS WORKING!");
+    console.log("JS is working!");
 
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
@@ -88,7 +88,6 @@ $(document).ready(function () {
         }
     });
 
-
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
@@ -135,16 +134,21 @@ $(document).ready(function () {
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`))
+            //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
+
 
             filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
             //=====THIS IS THE OTHER BUTTON FOR THE INFO CARD THAT DOES NOT WORKK =====<button class="addToDesired" >Add to List</button>
         } 
 
 
+        }
+
+
         // Get request which gets all country data from the db (via the API route)
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 filterByLetter();
             });
@@ -153,8 +157,12 @@ $(document).ready(function () {
 
     //DISPLAYS MORE INFO ABOUT THE COUNTRIES
 
-    $(document).on("click", ".moreInfo", function(event){ 
+    $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
+
+
+        console.log("I AM IN THE moreINFO function!");
+
 
         const countryResults = document.getElementById('showCountryCard');
         const countryAtoZ=document.getElementById('countriesAtoZ');
@@ -176,7 +184,14 @@ $(document).ready(function () {
             Add to List</button>
             </div>`;
 
-        };
+        });
+        var large = '<div class="card"> <div class="card-header"> COUNTRY NAME </div> <div class="card-body"><h5 class="card-title"></h5><p class="card-text">Three reasons to visit COUNTRY_NAME:</p> <p>Population: NEED POP</p><p>Region: NEED REGION </p><button class="addToDesired">Add to List</button></div></div>';
+        $("#showCountryCard").append(large);
+
+        // document.getElementById("#showCountryCard"").innerHTML +=  
+        //       "<h3>This is the text which has been inserted by JS</h3>"; 
+        //$("#showCountryCard").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`);
+
 
 
         //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
@@ -218,6 +233,7 @@ $(document).ready(function () {
             }
         });
 
+
         function addToDesired(countryObj) {
             console.log(countryObj)
             $.ajax({
@@ -236,6 +252,8 @@ $(document).ready(function () {
 
 
 
+
+    });
 
     // DISPLAYS COUNTRIES BY THEIR REGION
 
@@ -275,7 +293,6 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 displayByRegion();
             });
@@ -327,7 +344,6 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 countrySearch();
             });
@@ -375,12 +391,42 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 countrySearch();
             });
         }
 
     });
+
+        getAllNotes();
+
+        function notesDisplay() {
+
+            const notesArray = [];
+
+            for (var i = 0; i < notes.length; i++) {
+                notesArray.push(notes[i]);
+            }
+
+            notesArray.forEach(note => $("#notes").append(`
+                <br>
+                <div class="card w-100" >
+                    <div class="card-body">
+                        <h5 class="card-title">` + note.note_title.toUpperCase() + `</h5>
+                        <p class="card-text">` + note.note_text + `</p>
+                        <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `))
+
+        }
+
+        function getAllNotes() {
+            $.get("/api/notes", function (data) {
+                notes = data;
+                console.log(notes);
+                notesDisplay();
+            });
+        }
 
 });

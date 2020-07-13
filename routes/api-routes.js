@@ -38,7 +38,7 @@ module.exports = function (app) {
 
 
 
-  app.get("/api/new_country?", function(req, res) {
+  app.get("/api/new_country?", function (req, res) {
     if (req.params.countries) {
       // Display the JSON for ONLY that character.
       // (Note how we're using the ORM here to run our searches)
@@ -48,24 +48,24 @@ module.exports = function (app) {
           populationSize: req.params.population,
           countryRegion: req.params.region
         }
-      }).then(function(dbCountry) {
+      }).then(function (dbCountry) {
         return res.json(dbCountry);
       });
     } else {
-      country.findAll().then(function(dbCountry) {
+      country.findAll().then(function (dbCountry) {
         return res.json(dbCountry);
       });
     }
   });
 
-  app.delete("/api/new_country", function(req, res) {
+  app.delete("/api/new_country", function (req, res) {
     console.log("country:");
     console.log(req.params.countries)
     country.destroy({
       where: {
         id: req.params.countries
       }
-    }).then(function() {
+    }).then(function () {
       res.end();
     });
   });
@@ -122,42 +122,50 @@ module.exports = function (app) {
       });
   });
 
-  app.put("/api/desired", function(req, res) {
-  
+  app.put("/api/desired", function (req, res) {
+
     // console.log(req.body);
     db.Countries.update({ desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
       }
-    }).then(function(dbCountryDesired) {
+    }).then(function (dbCountryDesired) {
 
-        res.json(dbCountryDesired);
+      res.json(dbCountryDesired);
     })
   });
 
-  app.put("/api/visited", function(req, res) {
-  
+  app.put("/api/visited", function (req, res) {
+
     // console.log(req.body);
     db.Countries.update({ visited: req.body.visited, desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
       }
-    }).then(function(dbCountryVisited) {
+    }).then(function (dbCountryVisited) {
 
-        res.json(dbCountryVisited);
+      res.json(dbCountryVisited);
     })
   });
 
-  app.put("/api/remove", function(req, res) {
-  
+  app.put("/api/remove", function (req, res) {
+
     // console.log(req.body);
     db.Countries.update({ visited: req.body.visited }, {
       where: {
         country_name: req.body.country_name
       }
-    }).then(function(dbCountryRemoved) {
+    }).then(function (dbCountryRemoved) {
 
-        res.json(dbCountryRemoved);
+      res.json(dbCountryRemoved);
+    })
+  });
+
+  app.get("/api/notes", function (req, res) {
+
+    db.Notes.findAll({}).then(function (dbNotes) {
+      res.json(dbNotes);
+      console.log("HELLO!!!!");
     })
   });
 
