@@ -289,9 +289,6 @@ $(document).ready(function () {
 
     });
 
-    $(document).on("click", "#allNotesBtn", function (event) {
-        event.preventDefault();
-
         getAllNotes();
 
         function notesDisplay() {
@@ -322,7 +319,5 @@ $(document).ready(function () {
                 notesDisplay();
             });
         }
-
-    });
 
 });
