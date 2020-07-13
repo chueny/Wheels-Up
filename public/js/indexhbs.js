@@ -88,6 +88,10 @@ $(document).ready(function () {
         }
     });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 919d36db6de5e10eff1f28b440648019df87d664
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
@@ -117,6 +121,41 @@ $(document).ready(function () {
         }
     });
 
+<<<<<<< HEAD
+=======
+
+    // THE BELOW CODE IS REDUNANT
+    // $(document).on("click", ".addToDesired", function (event) {
+    //     event.preventDefault();
+
+    //     // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
+    //     let countryName = $(this).parent().text().slice(0, -12);
+    //     console.log(countryName);
+
+    //     const desiredCountry = {
+    //         country_name: countryName,
+    //         desired: 1
+    //     };
+
+    //     addToDesired(desiredCountry);
+
+    //     function addToDesired(countryObj) {
+    //         console.log(countryObj)
+    //         $.ajax({
+    //             method: "PUT",
+    //             url: "/api/desired",
+    //             data: countryObj
+    //         }).then(
+    //             function () {
+    //                 console.log(countryName + " added to desired.");
+    //                 location.reload();
+    //             }
+    //         );
+    //     }
+    // });
+  
+
+>>>>>>> 919d36db6de5e10eff1f28b440648019df87d664
     // DISPLAYS COUNTRIES BY FIRST LETTER
 
     $(document).on("click", ".alphaButton", function (event) {
@@ -135,10 +174,15 @@ $(document).ready(function () {
 
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
+<<<<<<< HEAD
             filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`)) 
             //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
 
 
+=======
+
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+>>>>>>> 919d36db6de5e10eff1f28b440648019df87d664
         }
 
         // Get request which gets all country data from the db (via the API route)
