@@ -118,7 +118,6 @@ $(document).ready(function () {
     });  
 
     // DISPLAYS COUNTRIES BY FIRST LETTER
-
     $(document).on("click", ".alphaButton", function (event) {
         event.preventDefault();
         //figure out what letter is clicked, need the value of the button
@@ -134,17 +133,9 @@ $(document).ready(function () {
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`))
-            //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
-
-
             filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
-            //=====THIS IS THE OTHER BUTTON FOR THE INFO CARD THAT DOES NOT WORKK =====<button class="addToDesired" >Add to List</button>
+
         } 
-
-
-        }
-
 
         // Get request which gets all country data from the db (via the API route)
         function getAllCountries() {
@@ -155,20 +146,15 @@ $(document).ready(function () {
         }
     });
 
-    //DISPLAYS MORE INFO ABOUT THE COUNTRIES
+   //DISPLAYS MORE INFO ABOUT THE COUNTRIES
 
-    $(document).on("click", ".moreInfo", function (event) {
+    $(document).on("click", ".moreInfo", function(event){ 
         event.preventDefault();
-
-
-        console.log("I AM IN THE moreINFO function!");
-
 
         const countryResults = document.getElementById('showCountryCard');
         const countryAtoZ=document.getElementById('countriesAtoZ');
 
         //this countryCard displays information about said country
-    
         function countryCard(countryName, population, region){      
             countryResults.innerHTML = `<div class="card"> 
             <div class="card-header"> ${countryName} </div> 
@@ -184,15 +170,7 @@ $(document).ready(function () {
             Add to List</button>
             </div>`;
 
-        });
-        var large = '<div class="card"> <div class="card-header"> COUNTRY NAME </div> <div class="card-body"><h5 class="card-title"></h5><p class="card-text">Three reasons to visit COUNTRY_NAME:</p> <p>Population: NEED POP</p><p>Region: NEED REGION </p><button class="addToDesired">Add to List</button></div></div>';
-        $("#showCountryCard").append(large);
-
-        // document.getElementById("#showCountryCard"").innerHTML +=  
-        //       "<h3>This is the text which has been inserted by JS</h3>"; 
-        //$("#showCountryCard").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`);
-
-
+        };
 
         //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
         //when clicked, it sends information attached from the button to some variables that gets passed
@@ -211,17 +189,15 @@ $(document).ready(function () {
         //eventlistener for when add to list button is clicked, links to the showCountryCard tag
         countryResults.addEventListener('click', (e) => {
             const cardEl = e.target;
-    
+
             if (cardEl.tagName === 'BUTTON') {
 
                 //button has country data attributes
                 //which are stored as an array in the desiredCountry variable, with changed condition 
-
                 const countryName = cardEl.getAttribute('data-country');
                 const population = cardEl.getAttribute('data-population');
                 const region = cardEl.getAttribute('data-region');
             
-
                 const desiredCountry = {
                     country_name: countryName,
                     desired: 1
@@ -232,7 +208,6 @@ $(document).ready(function () {
 
             }
         });
-
 
         function addToDesired(countryObj) {
             console.log(countryObj)
@@ -250,13 +225,7 @@ $(document).ready(function () {
 
     });
 
-
-
-
-    });
-
     // DISPLAYS COUNTRIES BY THEIR REGION
-
     $(document).on("click", ".countryRegion", function (event) {
         event.preventDefault();
 
