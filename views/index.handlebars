@@ -141,14 +141,14 @@
             <label for="travelNoteText">Note</label>
             <textarea class="form-control" id="travelNoteText" placeholder="-Les Poissons&#10;-De Pomme&#10;-Cinq Petits Canards" rows="5"></textarea>
           </div>
-          <button type="submit" class="btn btn-success" id="travelNoteBtn">Save</button>
+          <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
+          <button type="submit" class="btn btn-warning" id="allNotesBtn">View All Notes</button>
         </form>
 
       </div>
 
       <div class="col-md-12">
-        {{!-- {{#each notes}}
-        {{/each}} --}}
+        <div id="notes"></div>
       </div>
 
     </div>
