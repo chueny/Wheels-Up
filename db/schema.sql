@@ -13,3 +13,10 @@ CREATE TABLE Countries(
     region VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE Notes(
+	id INT NOT NULL AUTO_INCREMENT,
+    note_title VARCHAR(50) NOT NULL, 
+    note_text TEXT NOT NULL,
+    PRIMARY KEY (id)
+);

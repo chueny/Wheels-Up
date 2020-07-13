@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    console.log("JS WORKING!");
+    console.log("JS is working!");
 
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
@@ -88,68 +88,6 @@ $(document).ready(function () {
         }
     });
 
-
-    $(document).on("click", ".addToDesired", function (event) {
-        event.preventDefault();
-
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
-        console.log(countryName);
-
-        const desiredCountry = {
-            country_name: countryName,
-            desired: 1
-        };
-
-        addToDesired(desiredCountry);
-
-        function addToDesired(countryObj) {
-            console.log(countryObj)
-            $.ajax({
-                method: "PUT",
-                url: "/api/desired",
-                data: countryObj
-            }).then(
-                function () {
-                    console.log(countryName + " added to desired.");
-                    location.reload();
-                }
-            );
-        }
-    });
-
-
-    // THE BELOW CODE IS REDUNANT
-    // $(document).on("click", ".addToDesired", function (event) {
-    //     event.preventDefault();
-
-    //     // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-    //     let countryName = $(this).parent().text().slice(0, -12);
-    //     console.log(countryName);
-
-    //     const desiredCountry = {
-    //         country_name: countryName,
-    //         desired: 1
-    //     };
-
-    //     addToDesired(desiredCountry);
-
-    //     function addToDesired(countryObj) {
-    //         console.log(countryObj)
-    //         $.ajax({
-    //             method: "PUT",
-    //             url: "/api/desired",
-    //             data: countryObj
-    //         }).then(
-    //             function () {
-    //                 console.log(countryName + " added to desired.");
-    //                 location.reload();
-    //             }
-    //         );
-    //     }
-    // });
-  
-
     // DISPLAYS COUNTRIES BY FIRST LETTER
 
     $(document).on("click", ".alphaButton", function (event) {
@@ -168,14 +106,15 @@ $(document).ready(function () {
 
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + `<button class="moreInfo">More Info</button>`))
+            //filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))   
 
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+
         }
 
         // Get request which gets all country data from the db (via the API route)
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 filterByLetter();
             });
@@ -184,9 +123,9 @@ $(document).ready(function () {
 
     //DISPLAYS MORE INFO ABOUT THE COUNTRIES
 
-    $(document).on("click", ".moreInfo", function(event){ 
+    $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
-        
+
         console.log("I AM IN THE moreINFO function!");
 
         $("#showCountryCard").empty();
@@ -196,18 +135,15 @@ $(document).ready(function () {
 
         // document.getElementById("#showCountryCard"").innerHTML +=  
         //       "<h3>This is the text which has been inserted by JS</h3>"; 
-       //$("#showCountryCard").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`);
+        //$("#showCountryCard").append("<li>" + currentCountry.country_name + ` <button class="addToDesired">Add to List</button></li>`);
 
 
 
 
 
-        
+
 
     });
-
-
-
 
 
     // DISPLAYS COUNTRIES BY THEIR REGION
@@ -248,7 +184,6 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 displayByRegion();
             });
@@ -300,7 +235,6 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 countrySearch();
             });
@@ -348,12 +282,42 @@ $(document).ready(function () {
 
         function getAllCountries() {
             $.get("/api/countries/az", function (data) {
-                console.log(allCountries);
                 countries = data;
                 countrySearch();
             });
         }
 
     });
+
+        getAllNotes();
+
+        function notesDisplay() {
+
+            const notesArray = [];
+
+            for (var i = 0; i < notes.length; i++) {
+                notesArray.push(notes[i]);
+            }
+
+            notesArray.forEach(note => $("#notes").append(`
+                <br>
+                <div class="card w-100" >
+                    <div class="card-body">
+                        <h5 class="card-title">` + note.note_title.toUpperCase() + `</h5>
+                        <p class="card-text">` + note.note_text + `</p>
+                        <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `))
+
+        }
+
+        function getAllNotes() {
+            $.get("/api/notes", function (data) {
+                notes = data;
+                console.log(notes);
+                notesDisplay();
+            });
+        }
 
 });
