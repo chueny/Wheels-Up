@@ -131,7 +131,6 @@ $(document).ready(function () {
             $("#countriesAtoZ").empty();
             const allCountries = [];
             for (var i = 0; i < countries.length; i++) {
-                //console.log("Attributes that belong to countries", countries[i]);
                 allCountries.push(countries[i]);
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
@@ -139,8 +138,6 @@ $(document).ready(function () {
 
             filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
             //=====THIS IS THE OTHER BUTTON FOR THE INFO CARD THAT DOES NOT WORKK =====<button class="addToDesired" >Add to List</button>
-            //console.log("Print list in country atoz", document.querySelectorAll(".countriesAtoZ li"));
-            
         } 
 
 
@@ -158,71 +155,67 @@ $(document).ready(function () {
 
     $(document).on("click", ".moreInfo", function(event){ 
         event.preventDefault();
-        
-        console.log("I AM IN THE moreINFO function!");
 
         const countryResults = document.getElementById('showCountryCard');
-        //const cards = document.getElementsByClassName('card');
         const countryAtoZ=document.getElementById('countriesAtoZ');
-       // console.log("countriesAtoZ", countryAtoZ.innerHTML);
 
-      
+        //this countryCard displays information about said country
     
-    function countryCard(countryName, population, region){
-        
-        countryResults.innerHTML = `<div class="card"> 
-        <div class="card-header"> ${countryName} </div> 
-        <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">Why you should visit ${countryName}:</p>
-        <p>Population: ${population}</p>
-        <p>Region: ${region} </p>
-        <button class="cardBtn"
-            data-country="${countryName}" 
-            data-population="${population}"
-            data-region="${region}">
-        Add to List</button>
-        </div>`;
+        function countryCard(countryName, population, region){      
+            countryResults.innerHTML = `<div class="card"> 
+            <div class="card-header"> ${countryName} </div> 
+            <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">Why you should visit ${countryName}:</p>
+            <p>Population: ${population}</p>
+            <p>Region: ${region} </p>
+            <button class="cardBtn"
+                data-country="${countryName}" 
+                data-population="${population}"
+                data-region="${region}">
+            Add to List</button>
+            </div>`;
 
-    };
+        };
 
 
-        //eventlistener for when more info button is clicked for the functoin ALPHA BUTTON
+        //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
+        //when clicked, it sends information attached from the button to some variables that gets passed
+        //as parameters to countryCard so that countryCard has that information to display
         countryAtoZ.addEventListener('click', (e) => {
         const clickedEl = e.target;
-        //console.log("clickedEl", clickedEl.tagName);
 
         if (clickedEl.tagName === 'BUTTON') {
             const countryName = clickedEl.getAttribute('data-name');
             const population = clickedEl.getAttribute('data-population');
             const region = clickedEl.getAttribute('data-region');
-           countryCard(countryName, population, region);
+            countryCard(countryName, population, region);
         }
         });
 
-
-
-        //eventlistener for when save add to list button is clicked
+        //eventlistener for when add to list button is clicked, links to the showCountryCard tag
         countryResults.addEventListener('click', (e) => {
-        const cardEl = e.target;
-        console.log("WHICH tag clicking on", cardEl.tagName);
-        if (cardEl.tagName === 'BUTTON') {
-            const countryName = cardEl.getAttribute('data-country');
-            const population = cardEl.getAttribute('data-population');
-            const region = cardEl.getAttribute('data-region');
-            console.log("countryName is", countryName);
-            console.log("Population is", population);
-            console.log("Region is", region);
-           //addToList()
+            const cardEl = e.target;
+    
+            if (cardEl.tagName === 'BUTTON') {
 
-           const desiredCountry = {
-            country_name: countryName,
-            desired: 1
-        };
-        
-        addToDesired(desiredCountry);
+                //button has country data attributes
+                //which are stored as an array in the desiredCountry variable, with changed condition 
 
-        }
+                const countryName = cardEl.getAttribute('data-country');
+                const population = cardEl.getAttribute('data-population');
+                const region = cardEl.getAttribute('data-region');
+            
+
+                const desiredCountry = {
+                    country_name: countryName,
+                    desired: 1
+                };
+                
+                //changed condition is passed as parameter to addToDesired function 
+                addToDesired(desiredCountry);
+
+            }
         });
 
         function addToDesired(countryObj) {
