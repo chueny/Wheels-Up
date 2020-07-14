@@ -46,6 +46,24 @@ h5 {
 
 }
 
+.addToVisited{
+  
+  background-color: #1E90ff;
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+
+
+
+
 img {
   display: block;
   margin-top: 0px;
