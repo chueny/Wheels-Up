@@ -32,18 +32,29 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md">
+    <div class="col-md-12">
       <h1>Wheels Up!</h1>
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
   </div>
-</div>
-
-</div>
+    <div class="row">
+      <div class="col-md-12">
+        <form id="countrySearchForm">
+          <div class="form-group">
+            <i class="fas fa-plane-departure"></i>
+            <label for="inputNewCountry">Countries to explore:</label>
+            <input class="form-control" type="text" id="countrySearch" placeholder="The Moon">
+          </div>
+          <br>
+          <button type="button" id="countrySearchBtn" class="btn btn-secondary">Submit</button>
+        </form>
+        </div>
+        </div>
+        <br>
 <div class="row">
-  <div class="col-md-6">
-
-    <div>
+  <div class="col">
+  </div>
+  <div class="col-md-12">
       <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
       <button class="alphaButton">A</button>
       <button class="alphaButton">B</button>
@@ -58,9 +69,6 @@
       <button class="alphaButton">K</button>
       <button class="alphaButton">L</button>
       <button class="alphaButton">M</button>
-    </div>
-
-    <div>
       <button class="alphaButton">N</button>
       <button class="alphaButton">O</button>
       <button class="alphaButton">P</button>
@@ -75,35 +83,52 @@
       <button class="alphaButton">Y</button>
       <button class="alphaButton">Z</button>
     </div>
-
-    <div id="showCountryCard">
-    </div>
-
-    <div>
+     <div class="col">
       <ul id="countriesAtoZ"></ul>
     </div>
 
+    <div class="col" id="showCountryCard">
+    </div>
+    </div>
+    <br>
+     <div class="row">
+
+  <div class="col-md-12"><h4>Search for a country by region:</h4>
+      <button class="countryRegion">NORTHERN AMERICA</button>
+      <button class="countryRegion">WESTERN EUROPE</button>
+      <button class="countryRegion">EASTERN EUROPE</button>
+      <button class="countryRegion">NORTHERN AFRICA</button>
+      <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
+      <button class="countryRegion">OCEANIA</button>
+      <button class="countryRegion">SUB-SAHARAN AFRICA</button>
+      <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
+      <button class="countryRegion">C.W. OF IND. STATES</button>
+      <button class="countryRegion">NEAR EAST</button>
+      <button class="countryRegion">BALTICS</button>
+    </div>
+
+
+    <div class="col">
+      <ul id="countriesByRegion"></ul>
+    </div>
+
+  </div>
+        <br>
     <div class="row">
+      <div class="col-md"><h4>Starter list:</h4>
+        <ul id="allCountries">
+          {{#each countries}}
+          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          {{/each}}
+        </ul>
+      </div>
 
-      <div class="col-md-7">
-
-        <form id="countrySearchForm">
-          <div class="form-group">
-            <i class="fas fa-plane-departure"></i>
-            <label for="inputNewCountry">Countries to explore:</label>
-            <input class="form-control" type="text" id="countrySearch" placeholder="The Moon">
-          </div>
-          <br>
-          <button type="button" id="countrySearchBtn" class="btn btn-secondary">Submit</button>
-        </form>
-
-        <div>
+        <div class="col-md">
+          <h4>Search bar list:</h4>
           <ul id="countrySearchResult"></ul>
         </div>
 
-        <br>
-
-        <div>
+        <div class="col-md"><h4>Visit the country!</h4>
           <ul id="desired">
             {{#each countries}}
             {{#if this.dataValues.desired}}
@@ -112,14 +137,9 @@
             {{/each}}
           </ul>
         </div>
-
-      </div>
-
-      <div class="col-md-5">
-
-        <div>
+          <div class="col-md">
           <i class="fas fa-plane-arrival"></i>
-          <label for="inputNewCountry">Countries Visited:</label>
+          <label for="countriesVisted">Countries visited:</label>
           <ul id="visited">
             {{#each countries}}
             {{#if this.dataValues.visited}}
@@ -128,12 +148,9 @@
             {{/each}}
           </ul>
         </div>
-
       </div>
+ <br>
 
-    </div>
-
-    <hr>
 
     <div class="row">
 
@@ -151,52 +168,10 @@
           </div>
           <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
         </form>
-
       </div>
-
       <div class="col-md-12">
         <div id="notes"></div>
       </div>
 
     </div>
-
-
-  </div>
-
-
-  <div class="col-md-6">
-
-    <div>
-      <button class="countryRegion">NORTHERN AMERICA</button>
-      <button class="countryRegion">WESTERN EUROPE</button>
-      <button class="countryRegion">EASTERN EUROPE</button>
-      <button class="countryRegion">NORTHERN AFRICA</button>
-      <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
-      <button class="countryRegion">OCEANIA</button>
-      <button class="countryRegion">SUB-SAHARAN AFRICA</button>
-      <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
-      <button class="countryRegion">C.W. OF IND. STATES</button>
-      <button class="countryRegion">NEAR EAST</button>
-      <button class="countryRegion">BALTICS</button>
-    </div>
-
-
-    <div>
-      <ul id="countriesByRegion"></ul>
-    </div>
-
-    <div>
-      <ul id="allCountries">
-        {{#each countries}}
-        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-        {{/each}}
-      </ul>
-    </div>
-
-
-
-  </div>
-
-</div>
-
 </div>
