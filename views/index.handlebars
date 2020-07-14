@@ -158,6 +158,14 @@
         <div id="notes"></div>
       </div>
 
+      <div>
+        <ul>
+          {{#each notes}}
+          <li>{{this.dataValues.note_title}}</li>
+          {{/each}}
+        </ul>
+      </div>
+
     </div>
 
 

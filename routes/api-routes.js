@@ -94,14 +94,17 @@ module.exports = function (app) {
 
   app.get("/", function (req, res) {
 
-    db.Countries.findAll({}).then(function (data) {
-      hbsObject = {
-        countries: data
-      };
+    db.Countries.findAll({}).then(function (countriesData) {
+      db.Notes.findAll({}).then(function (notesData) {
+        
+        hbsObject = {
+          countries: countriesData,
+          notes: notesData
+        };
+  
+        res.render("index", hbsObject);
+      })
 
-      // console.log("THIS:" + data[0].dataValues.country_name);
-
-      res.render("index", hbsObject);
     });
   });
 
