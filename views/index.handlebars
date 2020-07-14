@@ -57,10 +57,11 @@
       </div>
 
 
-      <div>
-        <ul id="countriesAtoZ"></ul>
-      </div>
+    <div>
+      <ul id="countriesAtoZ"></ul>
+    </div>
 
+    <div class="row">
 
       <div class="row">
 
@@ -113,29 +114,23 @@
 
     </div>
 
-    <div class="col-md-6">
 
-      <div>
-        <button class="countryRegion">NORTHERN AMERICA</button>
-        <button class="countryRegion">WESTERN EUROPE</button>
-        <button class="countryRegion">EASTERN EUROPE</button>
-        <button class="countryRegion">NORTHERN AFRICA</button>
-        <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
-        <button class="countryRegion">OCEANIA</button>
-        <button class="countryRegion">SUB-SAHARAN AFRICA</button>
-        <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
-        <button class="countryRegion">C.W. OF IND. STATES</button>
-        <button class="countryRegion">NEAR EAST</button>
-        <button class="countryRegion">BALTICS</button>
-      </div>
-
-
-      <div>
-        <ul id="countriesByRegion"></ul>
-      </div>
-
+    <div>
+      <ul id="countriesByRegion"></ul>
     </div>
 
+    <div>
+      <ul id="allCountries">
+        {{#each countries}}
+        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+        {{/each}}
+      </ul>
+    </div>
+
+
+
   </div>
+
+</div>
 
 </div>
