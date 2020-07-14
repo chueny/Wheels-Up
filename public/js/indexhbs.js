@@ -388,16 +388,6 @@ $(document).ready(function () {
 
         postTravelNote(newTravelNote);
 
-        // function postTravelNote(travelNoteObj) {
-        //     console.log(travelNoteObj);
-        //     $.ajax({
-        //         url: "/api/notes",
-        //         data: travelNoteObj,
-        //         method: "POST",
-        //     });
-        // }
-
-
         function postTravelNote(travelNoteObj) {
             console.log(travelNoteObj);
             $.ajax({
@@ -415,5 +405,26 @@ $(document).ready(function () {
         $("#travelNoteText").val("");
 
     });
+
+    $(document).on("click", ".deleteNoteBtn", function (event) {
+        event.preventDefault();
+
+        const noteID = $(this).attr("data-id");
+
+        deleteTravelNote(noteID);
+
+        function deleteTravelNote(id) {
+            $.ajax({
+                url: "/api/notes/" + id,
+                method: "DELETE",
+            }).then(
+                function () {
+                    location.reload();
+                }
+            );
+        }
+
+    });
+
 
 });

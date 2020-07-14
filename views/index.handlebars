@@ -1,11 +1,13 @@
 <div class="container">
 
   <div class="row">
-    <div classe="col-md" id="imageBackground">
+    <div classe="col-md-12" id="imageBackground">
       <img src="../../assets/images/travel2.jpeg" alt="travel picture">
     </div>
   </div>
+
   <div class="cards-container">
+
     <div class="row">
       <div id="flags" class="col-md-12">
         <div class="card" style="width: 2rem;">
@@ -30,115 +32,24 @@
         </div>
       </div>
     </div>
+
   </div>
+
   <div class="row">
+
     <div class="col-md-12">
       <h1>Wheels Up!</h1>
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
-  </div>
- <div class="col-md-12">
-    <div id="abcsearch" >
-      <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
-      <div id="letters">
-      <button class="alphaButton">A</button>
-      <button class="alphaButton">B</button>
-      <button class="alphaButton">C</button>
-      <button class="alphaButton">D</button>
-      <button class="alphaButton">E</button>
-      <button class="alphaButton">F</button>
-      <button class="alphaButton">G</button>
-      <button class="alphaButton">H</button>
-      <button class="alphaButton">I</button>
-      <button class="alphaButton">J</button>
-      <button class="alphaButton">K</button>
-      <button class="alphaButton">L</button>
-      <button class="alphaButton">M</button>
-      <button class="alphaButton">N</button>
-      <button class="alphaButton">O</button>
-      <button class="alphaButton">P</button>
-      <button class="alphaButton">Q</button>
-      <button class="alphaButton">R</button>
-      <button class="alphaButton">S</button>
-      <button class="alphaButton">T</button>
-      <button class="alphaButton">U</button>
-      <button class="alphaButton">V</button>
-      <button class="alphaButton">W</button>
-      <button class="alphaButton">X</button>
-      <button class="alphaButton">Y</button>
-      <button class="alphaButton">Z</button>
-    </div>
-    <div class="col">
-      <ul id="countriesAtoZ"></ul>
-      </div>
-      </div>
-    </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <form id="countrySearchForm">
-          <div class="form-group">
-            <i class="fas fa-plane-departure"></i>
-            <label for="inputNewCountry">Countries to explore:</label>
-            <input class="form-control" type="text" id="countrySearch" placeholder="The Moon">
-          </div>
-          <br>
-          <button type="button" id="countrySearchBtn" class="btn btn-secondary">Search Options</button>
-        </form>
-        </div>
-        </div>
-        <br>
-<div class="row">
-  <div class="col">
   </div>
-  
 
-    <div class="col" id="showCountryCard">
-    </div>
-  </div>
-  <br>
+  {{!-- This row displays the desired and visited lists of countries --}}
   <div class="row">
 
-    <div class="col-md-12">
-      <h4>Search for a country by region:</h4>
-      <button class="countryRegion">NORTHERN AMERICA</button>
-      <button class="countryRegion">WESTERN EUROPE</button>
-      <button class="countryRegion">EASTERN EUROPE</button>
-      <button class="countryRegion">NORTHERN AFRICA</button>
-      <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
-      <button class="countryRegion">OCEANIA</button>
-      <button class="countryRegion">SUB-SAHARAN AFRICA</button>
-      <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
-      <button class="countryRegion">C.W. OF IND. STATES</button>
-      <button class="countryRegion">NEAR EAST</button>
-      <button class="countryRegion">BALTICS</button>
-    </div>
-
-
-    <div class="col">
-      <ul id="countriesByRegion"></ul>
-    </div>
-
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md">
-      <h4>Starter list:</h4>
-      <ul id="allCountries">
-        {{#each countries}}
-        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-        {{/each}}
-      </ul>
-    </div>
-
-    <div class="col-md">
-      <h4>Search bar list:</h4>
-      <ul id="countrySearchResult"></ul>
-    </div>
-
-    <div class="col-md">
-      <h4>Visit the country!</h4>
+    <div class="col-md-6">
+      <i class="fas fa-plane-departure"></i>
+      <span><strong>Countries to Visit</strong></span>
       <ul id="desired">
         {{#each countries}}
         {{#if this.dataValues.desired}}
@@ -147,9 +58,10 @@
         {{/each}}
       </ul>
     </div>
-    <div class="col-md">
+
+    <div class="col-md-6">
       <i class="fas fa-plane-arrival"></i>
-      <label for="countriesVisted">Countries visited:</label>
+      <span><strong>Countries Visited</strong></span>
       <ul id="visited">
         {{#each countries}}
         {{#if this.dataValues.visited}}
@@ -158,16 +70,131 @@
         {{/each}}
       </ul>
     </div>
+
   </div>
+
+  <br>
+  <br>
   <br>
 
+  {{!-- This row is to have all search functions and their country display --}}
+  <div class="row">
 
+    <div class="col-md-9">
+      {{!-- 3 search functions HERE (input, a-z, region) --}}
+      <div class="row">
+
+        <div class="col-md-12">
+          {{!-- #1 Input search --}}
+          <div class="row">
+
+            <div class="col-md-12">
+              <form id="countrySearchForm">
+                <div class="form-group">
+                  <label for="inputNewCountry">Search for a country:</label>
+                  <input class="form-control" type="text" id="countrySearch"
+                    placeholder="Be sure to use proper capitalization!">
+                </div>
+                <br>
+                <button type="button" id="countrySearchBtn" class="btn btn-secondary">Submit</button>
+              </form>
+            </div>
+
+          </div>
+          {{!-- #2 A-Z search --}}
+          <div class="row">
+
+            <div class="col-md-12">
+              <div id="abcsearch">
+                <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
+                <div id="letters">
+                  <button class="alphaButton">A</button>
+                  <button class="alphaButton">B</button>
+                  <button class="alphaButton">C</button>
+                  <button class="alphaButton">D</button>
+                  <button class="alphaButton">E</button>
+                  <button class="alphaButton">F</button>
+                  <button class="alphaButton">G</button>
+                  <button class="alphaButton">H</button>
+                  <button class="alphaButton">I</button>
+                  <button class="alphaButton">J</button>
+                  <button class="alphaButton">K</button>
+                  <button class="alphaButton">L</button>
+                  <button class="alphaButton">M</button>
+                  <button class="alphaButton">N</button>
+                  <button class="alphaButton">O</button>
+                  <button class="alphaButton">P</button>
+                  <button class="alphaButton">Q</button>
+                  <button class="alphaButton">R</button>
+                  <button class="alphaButton">S</button>
+                  <button class="alphaButton">T</button>
+                  <button class="alphaButton">U</button>
+                  <button class="alphaButton">V</button>
+                  <button class="alphaButton">W</button>
+                  <button class="alphaButton">X</button>
+                  <button class="alphaButton">Y</button>
+                  <button class="alphaButton">Z</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          {{!-- #3 Region search --}}
+          <div class="row">
+
+            <div class="col-md-12">
+              <h4>Search for a country by region:</h4>
+              <button class="countryRegion">NORTHERN AMERICA</button>
+              <button class="countryRegion">WESTERN EUROPE</button>
+              <button class="countryRegion">EASTERN EUROPE</button>
+              <button class="countryRegion">NORTHERN AFRICA</button>
+              <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
+              <button class="countryRegion">OCEANIA</button>
+              <button class="countryRegion">SUB-SAHARAN AFRICA</button>
+              <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
+              <button class="countryRegion">C.W. OF IND. STATES</button>
+              <button class="countryRegion">NEAR EAST</button>
+              <button class="countryRegion">BALTICS</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {{!-- Results for any of the search functions HERE --}}
+    <div class="col-md-3">
+
+      <div id="showCountryCard"></div>
+      <div>
+        <ul id="countriesByRegion"></ul>
+        <ul id="countriesAtoZ"></ul>
+        <ul id="countrySearchResult"></ul>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  {{!-- This row is for the travel notes heading --}}
   <div class="row">
 
     <div class="col-md-12">
+      <h2>Travel Notes</h2>
+    </div>
 
+  </div>
+
+  {{!-- This row is for the travel notes input form and notes display --}}
+  <div class="row">
+
+    <div class="col-md-6">
       <form>
-        <h4>Travel Notes</h4>
         <div class="form-group">
           <label for="travelNoteTitle">Title</label>
           <input type="text" class="form-control" id="travelNoteTitle" placeholder="Parisian Restaurants">
@@ -180,11 +207,8 @@
         <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
       </form>
     </div>
-    <div class="col-md-12">
-      <div id="notes"></div>
-    </div>
 
-    <div>
+    <div class="col-md-6">
       <ul>
         {{#each notes}}
         <br>
@@ -192,7 +216,8 @@
           <div class="card-body">
             <h5 class="card-title">{{this.dataValues.note_title}}</h5>
             <p class="card-text">{{this.dataValues.note_text}}</p>
-            <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
+            <button class="btn btn-danger deleteNoteBtn" data-id="{{this.dataValues.id}}"><i
+                class="fas fa-trash"></i></button>
           </div>
         </div>
         {{/each}}
@@ -200,4 +225,5 @@
     </div>
 
   </div>
+
 </div>
