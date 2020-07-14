@@ -5,57 +5,15 @@
       <img src="../../assets/images/travel2.jpeg" alt="travel picture">
     </div>
   </div>
-  <div class="cards-container">
-    <div class="row">
-      <div id="flags" class="col-md-12">
-        <div class="card" style="width: 2rem;">
-          <img class="card-img-top" alt="Egypt" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/EG.svg"
-            height="10" width="10" />
-        </div>
-        <div class="card" style="width: 2rem;">
-          <img class="card-img-top" alt="Peru" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/PE.svg"
-            height="10" width="10" />
-        </div>
-        <div class="card" style="width: 2rem;">
-          <img alt="Canada" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/CA.svg"
-            height="10" width="10" />
-        </div>
-        <div class="card" style="width: 2rem;">
-          <img alt="Spain" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/ES.svg"
-            height="10" width="10" />
-        </div>
-        <div class="card" style="width: 2rem;">
-          <img alt="Italy" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/IT.svg"
-            height="10" width="10" />
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md">
       <h1>Wheels Up!</h1>
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
   </div>
-    <div class="row">
-      <div class="col-md-12">
-        <form id="countrySearchForm">
-          <div class="form-group">
-            <i class="fas fa-plane-departure"></i>
-            <label for="inputNewCountry">Countries to explore:</label>
-            <input class="form-control" type="text" id="countrySearch" placeholder="The Moon">
-          </div>
-          <br>
-          <button type="button" id="countrySearchBtn" class="btn btn-secondary">Submit</button>
-        </form>
-        </div>
-        </div>
-        <br>
-<div class="row">
-  <div class="col">
-  </div>
-  <div class="col-md-12">
-      <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
+  <div id="abcsearch">
+    <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
+    <div id="letters">
       <button class="alphaButton">A</button>
       <button class="alphaButton">B</button>
       <button class="alphaButton">C</button>
@@ -83,74 +41,77 @@
       <button class="alphaButton">Y</button>
       <button class="alphaButton">Z</button>
     </div>
-     <div class="col">
-      <ul id="countriesAtoZ"></ul>
-    </div>
-
-    <div class="col" id="showCountryCard">
-    </div>
-    </div>
-    <br>
-     <div class="row">
-
-  <div class="col-md-12"><h4>Search for a country by region:</h4>
-      <button class="countryRegion">NORTHERN AMERICA</button>
-      <button class="countryRegion">WESTERN EUROPE</button>
-      <button class="countryRegion">EASTERN EUROPE</button>
-      <button class="countryRegion">NORTHERN AFRICA</button>
-      <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
-      <button class="countryRegion">OCEANIA</button>
-      <button class="countryRegion">SUB-SAHARAN AFRICA</button>
-      <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
-      <button class="countryRegion">C.W. OF IND. STATES</button>
-      <button class="countryRegion">NEAR EAST</button>
-      <button class="countryRegion">BALTICS</button>
-    </div>
-
-
-    <div class="col">
-      <ul id="countriesByRegion"></ul>
-    </div>
-
   </div>
-        <br>
-    <div class="row">
-      <div class="col-md"><h4>Starter list:</h4>
+
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div>
         <ul id="allCountries">
           {{#each countries}}
           <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+          {{!-- <li>{{this.dataValues.population}} </li> --}}
           {{/each}}
         </ul>
       </div>
 
-        <div class="col-md">
-          <h4>Search bar list:</h4>
-          <ul id="countrySearchResult"></ul>
-        </div>
 
-        <div class="col-md"><h4>Visit the country!</h4>
-          <ul id="desired">
-            {{#each countries}}
-            {{#if this.dataValues.desired}}
-            <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
-            {{/if}}
-            {{/each}}
-          </ul>
-        </div>
-          <div class="col-md">
-          <i class="fas fa-plane-arrival"></i>
-          <label for="countriesVisted">Countries visited:</label>
-          <ul id="visited">
-            {{#each countries}}
-            {{#if this.dataValues.visited}}
-            <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
-            {{/if}}
-            {{/each}}
-          </ul>
-        </div>
+      <div>
+        <ul id="countriesAtoZ"></ul>
       </div>
- <br>
 
+
+      <div class="row">
+
+        <div class="col-md-7">
+
+          <form>
+            <div class="form-group">
+              <i class="fas fa-plane-departure"></i>
+              <label for="inputNewCountry">Countries to explore:</label>
+              <input class="form-control" type="text" id="inputNewCountry" placeholder="The Moon">
+            </div>
+            <br>
+            <button type="button" class="btn btn-secondary">Submit</button>
+          </form>
+
+          <br>
+
+          <div>
+            <ul id="desired">
+              {{#each countries}}
+              {{#if this.dataValues.desired}}
+              <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+              {{/if}}
+              {{/each}}
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-5">
+
+          <div>
+            <i class="fas fa-plane-arrival"></i>
+            <label for="inputNewCountry">Countries Visited:</label>
+            <ul id="visited">
+              {{#each countries}}
+              {{#if this.dataValues.visited}}
+              <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
+              {{/if}}
+              {{/each}}
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+
+    </div>
 
     <div class="row">
 
