@@ -168,7 +168,6 @@ module.exports = function (app) {
 
     db.Notes.findAll({}).then(function (dbNotes) {
       res.json(dbNotes);
-      console.log("HELLO!!!!");
     })
   });
 

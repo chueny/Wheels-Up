@@ -367,35 +367,35 @@ $(document).ready(function () {
 
     });
 
-        getAllNotes();
+        // getAllNotes();
 
-        function notesDisplay() {
+        // function notesDisplay() {
 
-            const notesArray = [];
+        //     const notesArray = [];
 
-            for (var i = 0; i < notes.length; i++) {
-                notesArray.push(notes[i]);
-            }
+        //     for (var i = 0; i < notes.length; i++) {
+        //         notesArray.push(notes[i]);
+        //     }
 
-            notesArray.forEach(note => $("#notes").append(`
-                <br>
-                <div class="card w-100" >
-                    <div class="card-body">
-                        <h5 class="card-title">` + note.note_title.toUpperCase() + `</h5>
-                        <p class="card-text">` + note.note_text + `</p>
-                        <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-            `))
+        //     notesArray.forEach(note => $("#notes").append(`
+        //         <br>
+        //         <div class="card w-100" >
+        //             <div class="card-body">
+        //                 <h5 class="card-title">` + note.note_title.toUpperCase() + `</h5>
+        //                 <p class="card-text">` + note.note_text + `</p>
+        //                 <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
+        //             </div>
+        //         </div>
+        //     `))
 
-        }
+        // }
 
-        function getAllNotes() {
-            $.get("/api/notes", function (data) {
-                notes = data;
-                console.log(notes);
-                notesDisplay();
-            });
-        }
+        // function getAllNotes() {
+        //     $.get("/api/notes", function (data) {
+        //         notes = data;
+        //         console.log(notes);
+        //         notesDisplay();
+        //     });
+        // }
 
 });
