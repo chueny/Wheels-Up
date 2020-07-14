@@ -8,7 +8,7 @@ $(document).ready(function () {
         // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
         let countryName = $(this).parent().text().slice(0, -12);
         console.log(countryName);
-        
+
         const desiredCountry = {
             country_name: countryName,
             desired: 1
@@ -115,7 +115,7 @@ $(document).ready(function () {
                 }
             );
         }
-    });  
+    });
 
     // DISPLAYS COUNTRIES BY FIRST LETTER
     $(document).on("click", ".alphaButton", function (event) {
@@ -135,7 +135,7 @@ $(document).ready(function () {
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
             filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
 
-        } 
+        }
 
         // Get request which gets all country data from the db (via the API route)
         function getAllCountries() {
@@ -146,16 +146,16 @@ $(document).ready(function () {
         }
     });
 
-   //DISPLAYS MORE INFO ABOUT THE COUNTRIES
+    //DISPLAYS MORE INFO ABOUT THE COUNTRIES
 
-    $(document).on("click", ".moreInfo", function(event){ 
+    $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
 
         const countryResults = document.getElementById('showCountryCard');
-        const countryAtoZ=document.getElementById('countriesAtoZ');
+        const countryAtoZ = document.getElementById('countriesAtoZ');
 
         //this countryCard displays information about said country
-        function countryCard(countryName, population, region){      
+        function countryCard(countryName, population, region) {
             countryResults.innerHTML = `<div class="card"> 
             <div class="card-header"> ${countryName} </div> 
             <div class="card-body">
@@ -176,14 +176,14 @@ $(document).ready(function () {
         //when clicked, it sends information attached from the button to some variables that gets passed
         //as parameters to countryCard so that countryCard has that information to display
         countryAtoZ.addEventListener('click', (e) => {
-        const clickedEl = e.target;
+            const clickedEl = e.target;
 
-        if (clickedEl.tagName === 'BUTTON') {
-            const countryName = clickedEl.getAttribute('data-name');
-            const population = clickedEl.getAttribute('data-population');
-            const region = clickedEl.getAttribute('data-region');
-            countryCard(countryName, population, region);
-        }
+            if (clickedEl.tagName === 'BUTTON') {
+                const countryName = clickedEl.getAttribute('data-name');
+                const population = clickedEl.getAttribute('data-population');
+                const region = clickedEl.getAttribute('data-region');
+                countryCard(countryName, population, region);
+            }
         });
 
         //eventlistener for when add to list button is clicked, links to the showCountryCard tag
@@ -197,12 +197,12 @@ $(document).ready(function () {
                 const countryName = cardEl.getAttribute('data-country');
                 const population = cardEl.getAttribute('data-population');
                 const region = cardEl.getAttribute('data-region');
-            
+
                 const desiredCountry = {
                     country_name: countryName,
                     desired: 1
                 };
-                
+
                 //changed condition is passed as parameter to addToDesired function 
                 addToDesired(desiredCountry);
 
@@ -367,35 +367,53 @@ $(document).ready(function () {
 
     });
 
-        // getAllNotes();
+    $(document).on("click", "#saveNoteBtn", function (event) {
+        event.preventDefault();
 
-        // function notesDisplay() {
 
-        //     const notesArray = [];
+        // Prevents the user submitting the post if the title or text is missing
+        if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
+            return;
+        }
 
-        //     for (var i = 0; i < notes.length; i++) {
-        //         notesArray.push(notes[i]);
-        //     }
+        console.log("clicked worked! and missing field validation worked too!");
 
-        //     notesArray.forEach(note => $("#notes").append(`
-        //         <br>
-        //         <div class="card w-100" >
-        //             <div class="card-body">
-        //                 <h5 class="card-title">` + note.note_title.toUpperCase() + `</h5>
-        //                 <p class="card-text">` + note.note_text + `</p>
-        //                 <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
-        //             </div>
-        //         </div>
-        //     `))
+        const travelNoteTitle = $("#travelNoteTitle").val().trim();
+        const travelNoteText = $("#travelNoteText").val().trim();
 
-        // }
+        const newTravelNote = {
+            note_title: travelNoteTitle,
+            note_text: travelNoteText
+        };
 
-        // function getAllNotes() {
-        //     $.get("/api/notes", function (data) {
-        //         notes = data;
-        //         console.log(notes);
-        //         notesDisplay();
+        postTravelNote(newTravelNote);
+
+        // function postTravelNote(travelNoteObj) {
+        //     console.log(travelNoteObj);
+        //     $.ajax({
+        //         url: "/api/notes",
+        //         data: travelNoteObj,
+        //         method: "POST",
         //     });
         // }
+
+
+        function postTravelNote(travelNoteObj) {
+            console.log(travelNoteObj);
+            $.ajax({
+                url: "/api/notes",
+                data: travelNoteObj,
+                method: "POST",
+            }).then(
+                function () {
+                    location.reload();
+                }
+            );
+        }
+
+        $("#travelNoteTitle").val("");
+        $("#travelNoteText").val("");
+
+    });
 
 });

@@ -96,33 +96,16 @@ module.exports = function (app) {
 
     db.Countries.findAll({}).then(function (countriesData) {
       db.Notes.findAll({}).then(function (notesData) {
-        
+
         hbsObject = {
           countries: countriesData,
           notes: notesData
         };
-  
+
         res.render("index", hbsObject);
       })
 
     });
-  });
-
-  // Route for adding a new country to the list
-  app.post("/api/new_country", (req, res) => {
-    // verify if the country exist before create (look at Slack LA comment for help -BV)
-    db.Countries.create({
-      country_name: req.body.country_name,
-      visited: req.body.visited,
-      population: req.body.population,
-      region: req.body.region
-    })
-      .then((dbCountry) => {
-        res.json(dbCountry);
-      })
-      .catch(err => {
-        res.status(404).json(err);
-      });
   });
 
   app.put("/api/desired", function (req, res) {
@@ -169,6 +152,21 @@ module.exports = function (app) {
     db.Notes.findAll({}).then(function (dbNotes) {
       res.json(dbNotes);
     })
+  });
+
+  // Route for adding a new country to the list
+  app.post("/api/notes", (req, res) => {
+    console.log(req.body.note_title + req.body.note_text);
+    db.Notes.create({
+      note_title: req.body.note_title,
+      note_text: req.body.note_text
+    })
+      .then((dbNote) => {
+        res.json(dbNote);
+      })
+      .catch(err => {
+        res.status(404).json(err);
+      });
   });
 
 };
