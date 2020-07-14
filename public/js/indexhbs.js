@@ -409,13 +409,9 @@ $(document).ready(function () {
     $(document).on("click", ".deleteNoteBtn", function (event) {
         event.preventDefault();
 
-        // NEITHER OF THESE IS WORKING; ALWAYS GETS id OF 1 (or the next lowest number)
-        const noteIDone = $(".deleteNoteBtn").attr("data-id");
-        // const noteIDtwo = $(".deleteNoteBtn").data().id;
+        const noteID = $(this).attr("data-id");
 
-        console.log(noteIDone);
-
-        deleteTravelNote(noteIDone);
+        deleteTravelNote(noteID);
 
         function deleteTravelNote(id) {
             $.ajax({
