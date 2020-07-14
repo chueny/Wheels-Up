@@ -3,7 +3,7 @@ h1 {
   font-weight: bold;
   text-align: center;
   margin: 25px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 75px;
 
 }
@@ -33,7 +33,7 @@ justify-content: center;
 h5 {
   text-align: center;
   margin-bottom: 100px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
 
 }
 
@@ -66,7 +66,12 @@ size: 100px;
 }
 
 body {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   padding: 20px;
 
+}
+
+#flags{
+  display: flex;
+  flex-wrap: wrap;
 }

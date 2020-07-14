@@ -113,29 +113,26 @@
 
     </div>
 
-    <div class="col-md-6">
+    <div class="row">
 
-      <div>
-        <button class="countryRegion">NORTHERN AMERICA</button>
-        <button class="countryRegion">WESTERN EUROPE</button>
-        <button class="countryRegion">EASTERN EUROPE</button>
-        <button class="countryRegion">NORTHERN AFRICA</button>
-        <button class="countryRegion">ASIA &#40;EX. NEAR EAST&#41;</button>
-        <button class="countryRegion">OCEANIA</button>
-        <button class="countryRegion">SUB-SAHARAN AFRICA</button>
-        <button class="countryRegion">LATIN AMER. &#38; CARIB</button>
-        <button class="countryRegion">C.W. OF IND. STATES</button>
-        <button class="countryRegion">NEAR EAST</button>
-        <button class="countryRegion">BALTICS</button>
+      <div class="col-md-12">
+
+        <form>
+          <h4>Travel Notes</h4>
+          <div class="form-group">
+            <label for="travelNoteTitle">Title</label>
+            <input type="text" class="form-control" id="travelNoteTitle" placeholder="Parisian Restaurants">
+          </div>
+          <div class="form-group">
+            <label for="travelNoteText">Note</label>
+            <textarea class="form-control" id="travelNoteText" placeholder="-Les Poissons&#10;-De Pomme&#10;-Cinq Petits Canards" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
+        </form>
       </div>
-
-
-      <div>
-        <ul id="countriesByRegion"></ul>
+      <div class="col-md-12">
+        <div id="notes"></div>
       </div>
 
     </div>
-
-  </div>
-
 </div>
