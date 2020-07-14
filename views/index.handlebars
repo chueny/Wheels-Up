@@ -37,8 +37,29 @@
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
   </div>
+<<<<<<< HEAD
+  <div class="row">
+    <div class="col-md-12">
+      <form id="countrySearchForm">
+        <div class="form-group">
+          <i class="fas fa-plane-departure"></i>
+          <label for="inputNewCountry">Countries to explore:</label>
+          <input class="form-control" type="text" id="countrySearch" placeholder="The Moon">
+        </div>
+        <br>
+        <button type="button" id="countrySearchBtn" class="btn btn-secondary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-md-12">
+=======
  <div class="col-md-12">
     <div id="abcsearch" >
+>>>>>>> a569910a6792c7f43caef24c8d596ae97aaf7eb2
       <h4 class="searchByAlphabet">Search for a country by the alphabet:</h4>
       <div id="letters">
       <button class="alphaButton">A</button>
@@ -68,7 +89,7 @@
       <button class="alphaButton">Y</button>
       <button class="alphaButton">Z</button>
     </div>
-     <div class="col">
+    <div class="col">
       <ul id="countriesAtoZ"></ul>
       </div>
       </div>
@@ -96,11 +117,12 @@
 
     <div class="col" id="showCountryCard">
     </div>
-    </div>
-    <br>
-     <div class="row">
+  </div>
+  <br>
+  <div class="row">
 
-  <div class="col-md-12"><h4>Search for a country by region:</h4>
+    <div class="col-md-12">
+      <h4>Search for a country by region:</h4>
       <button class="countryRegion">NORTHERN AMERICA</button>
       <button class="countryRegion">WESTERN EUROPE</button>
       <button class="countryRegion">EASTERN EUROPE</button>
@@ -120,65 +142,83 @@
     </div>
 
   </div>
-        <br>
-    <div class="row">
-      <div class="col-md"><h4>Starter list:</h4>
-        <ul id="allCountries">
-          {{#each countries}}
-          <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-          {{/each}}
-        </ul>
-      </div>
-
-        <div class="col-md">
-          <h4>Search bar list:</h4>
-          <ul id="countrySearchResult"></ul>
-        </div>
-
-        <div class="col-md"><h4>Visit the country!</h4>
-          <ul id="desired">
-            {{#each countries}}
-            {{#if this.dataValues.desired}}
-            <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
-            {{/if}}
-            {{/each}}
-          </ul>
-        </div>
-          <div class="col-md">
-          <i class="fas fa-plane-arrival"></i>
-          <label for="countriesVisted">Countries visited:</label>
-          <ul id="visited">
-            {{#each countries}}
-            {{#if this.dataValues.visited}}
-            <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
-            {{/if}}
-            {{/each}}
-          </ul>
-        </div>
-      </div>
- <br>
-
-
-    <div class="row">
-
-      <div class="col-md-12">
-
-        <form>
-          <h4>Travel Notes</h4>
-          <div class="form-group">
-            <label for="travelNoteTitle">Title</label>
-            <input type="text" class="form-control" id="travelNoteTitle" placeholder="Parisian Restaurants">
-          </div>
-          <div class="form-group">
-            <label for="travelNoteText">Note</label>
-            <textarea class="form-control" id="travelNoteText" placeholder="-Les Poissons&#10;-De Pomme&#10;-Cinq Petits Canards" rows="5"></textarea>
-          </div>
-          <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
-        </form>
-      </div>
-      <div class="col-md-12">
-        <div id="notes"></div>
-      </div>
-
+  <br>
+  <div class="row">
+    <div class="col-md">
+      <h4>Starter list:</h4>
+      <ul id="allCountries">
+        {{#each countries}}
+        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
+        {{/each}}
+      </ul>
     </div>
+
+    <div class="col-md">
+      <h4>Search bar list:</h4>
+      <ul id="countrySearchResult"></ul>
+    </div>
+
+    <div class="col-md">
+      <h4>Visit the country!</h4>
+      <ul id="desired">
+        {{#each countries}}
+        {{#if this.dataValues.desired}}
+        <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md">
+      <i class="fas fa-plane-arrival"></i>
+      <label for="countriesVisted">Countries visited:</label>
+      <ul id="visited">
+        {{#each countries}}
+        {{#if this.dataValues.visited}}
+        <li>{{this.dataValues.country_name}} <button class="removeCountry">Delete!</button></li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <br>
+
+
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <form>
+        <h4>Travel Notes</h4>
+        <div class="form-group">
+          <label for="travelNoteTitle">Title</label>
+          <input type="text" class="form-control" id="travelNoteTitle" placeholder="Parisian Restaurants">
+        </div>
+        <div class="form-group">
+          <label for="travelNoteText">Note</label>
+          <textarea class="form-control" id="travelNoteText"
+            placeholder="-Les Poissons&#10;-De Pomme&#10;-Cinq Petits Canards" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
+      </form>
+    </div>
+    <div class="col-md-12">
+      <div id="notes"></div>
+    </div>
+
+    <div>
+      <ul>
+        {{#each notes}}
+        <br>
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-title">{{this.dataValues.note_title}}</h5>
+            <p class="card-text">{{this.dataValues.note_text}}</p>
+            <button class="btn btn-danger deleteNoteBtn"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        {{/each}}
+      </ul>
+    </div>
+
+  </div>
 </div>
