@@ -36,39 +36,6 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-
-
-  app.get("/api/new_country?", function (req, res) {
-    if (req.params.countries) {
-      // Display the JSON for ONLY that character.
-      // (Note how we're using the ORM here to run our searches)
-      country.findOne({
-        where: {
-          countryName: req.params.countries,
-          populationSize: req.params.population,
-          countryRegion: req.params.region
-        }
-      }).then(function (dbCountry) {
-        return res.json(dbCountry);
-      });
-    } else {
-      country.findAll().then(function (dbCountry) {
-        return res.json(dbCountry);
-      });
-    }
-  });
-
-  app.delete("/api/new_country", function (req, res) {
-    console.log("country:");
-    console.log(req.params.countries)
-    country.destroy({
-      where: {
-        id: req.params.countries
-      }
-    }).then(function () {
-      res.end();
-    });
-  });
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
@@ -82,14 +49,6 @@ module.exports = function (app) {
         id: req.user.id
       });
     }
-  });
-
-  // Route for getting countries and displaying to the page
-  app.get("/api/countries/az", function (req, res) {
-
-    db.Countries.findAll({}).then(function (dbCountries) {
-      res.json(dbCountries);
-    })
   });
 
   app.get("/", function (req, res) {
@@ -108,9 +67,16 @@ module.exports = function (app) {
     });
   });
 
+  // Route for getting countries and displaying to the page
+  app.get("/api/countries/az", function (req, res) {
+
+    db.Countries.findAll({}).then(function (dbCountries) {
+      res.json(dbCountries);
+    })
+  });
+
   app.put("/api/desired", function (req, res) {
 
-    // console.log(req.body);
     db.Countries.update({ desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
@@ -123,7 +89,6 @@ module.exports = function (app) {
 
   app.put("/api/visited", function (req, res) {
 
-    // console.log(req.body);
     db.Countries.update({ visited: req.body.visited, desired: req.body.desired }, {
       where: {
         country_name: req.body.country_name
@@ -136,7 +101,6 @@ module.exports = function (app) {
 
   app.put("/api/remove", function (req, res) {
 
-    // console.log(req.body);
     db.Countries.update({ visited: req.body.visited }, {
       where: {
         country_name: req.body.country_name
@@ -147,14 +111,13 @@ module.exports = function (app) {
     })
   });
 
-  app.get("/api/notes", function (req, res) {
+  app.get("/api/notes", (req, res) => {
 
     db.Notes.findAll({}).then(function (dbNotes) {
       res.json(dbNotes);
     })
   });
 
-  // Route for adding a new country to the list
   app.post("/api/notes", (req, res) => {
     console.log(req.body.note_title + req.body.note_text);
     db.Notes.create({
@@ -167,6 +130,18 @@ module.exports = function (app) {
       .catch(err => {
         res.status(404).json(err);
       });
+  });
+
+  // THIS ROUTE WORKS BUT GETTING THE CORRECT ID IS NOT!
+  app.delete("/api/notes/:id", (req, res) => {
+    console.log("HEY! req.params.id EQUALS: " + req.params.id)
+    db.Notes.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then((dbNote) => {
+      res.json(dbNote);
+    });
   });
 
 };
