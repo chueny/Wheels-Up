@@ -57,11 +57,10 @@
       </div>
 
 
-    <div>
-      <ul id="countriesAtoZ"></ul>
-    </div>
+      <div>
+        <ul id="countriesAtoZ"></ul>
+      </div>
 
-    <div class="row">
 
       <div class="row">
 
@@ -114,23 +113,26 @@
 
     </div>
 
+    <div class="row">
 
-    <div>
-      <ul id="countriesByRegion"></ul>
+      <div class="col-md-12">
+
+        <form>
+          <h4>Travel Notes</h4>
+          <div class="form-group">
+            <label for="travelNoteTitle">Title</label>
+            <input type="text" class="form-control" id="travelNoteTitle" placeholder="Parisian Restaurants">
+          </div>
+          <div class="form-group">
+            <label for="travelNoteText">Note</label>
+            <textarea class="form-control" id="travelNoteText" placeholder="-Les Poissons&#10;-De Pomme&#10;-Cinq Petits Canards" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success" id="saveNoteBtn">Save</button>
+        </form>
+      </div>
+      <div class="col-md-12">
+        <div id="notes"></div>
+      </div>
+
     </div>
-
-    <div>
-      <ul id="allCountries">
-        {{#each countries}}
-        <li>{{this.dataValues.country_name}} <button class="addToDesired">Add to List</button></li>
-        {{/each}}
-      </ul>
-    </div>
-
-
-
-  </div>
-
-</div>
-
 </div>
