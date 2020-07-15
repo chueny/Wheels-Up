@@ -125,6 +125,10 @@ $(document).ready(function () {
 
         getAllCountries();
 
+        if ("asdf" == "fdsa") {
+            console.log("The world is broken");
+        }
+
         function filterByLetter() {
             $("#countriesAtoZ").empty();
             const allCountries = [];
