@@ -1,8 +1,8 @@
 <div class="row">
-    <div classe="col-md-12" id="imageBackground">
-      <img src="../../assets/images/travel2.jpeg" alt="travel picture">
-    </div>
+  <div classe="col-md-12" id="imageBackground">
+    <img src="../../assets/images/travel2.jpeg" alt="travel picture">
   </div>
+</div>
 <div class="container">
   <div class="cards-container">
 
@@ -41,12 +41,12 @@
             height="10" width="10" />
         </div>
         <div class="card" style="width: 2rem;">
-          <img alt="Afghanistan" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AF.svg"
-            height="10" width="10" />
+          <img alt="Afghanistan" class="card-img-top"
+            src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AF.svg" height="10" width="10" />
         </div>
         <div class="card" style="width: 2rem;">
-          <img alt="Antigua-and-Barbuda" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AG.svg"
-            height="10" width="10" />
+          <img alt="Antigua-and-Barbuda" class="card-img-top"
+            src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AG.svg" height="10" width="10" />
         </div>
         <div class="card" style="width: 2rem;">
           <img alt="Anguilla" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AI.svg"
@@ -71,11 +71,11 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-departure"></i>
-      <span><strong>Countries to Visit</strong></span>
+      <span>Countries to Visit</span>
       <ul id="desired">
         {{#each countries}}
         {{#if this.dataValues.desired}}
-        <li>{{this.dataValues.country_name}} <button class="addToVisited">Wheels Up!</button></li>
+        <li>{{this.dataValues.country_name}} <button class="addToVisited" data-country="{{this.dataValues.country_name}}">Wheels Up!</button></li>
         {{/if}}
         {{/each}}
       </ul>
@@ -83,12 +83,12 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-arrival"></i>
-      <span><strong>Countries Visited</strong></span>
+      <span>Countries Visited</span>
       <ul id="visited">
         {{#each countries}}
         {{#if this.dataValues.visited}}
-        <li>{{this.dataValues.country_name}}<button class="btn removeCountry" data-country="{{this.dataValues.country_name}}"><i
-                class="fas fa-trash visitedIcon"></i></button></li>
+        <li>{{this.dataValues.country_name}}<button class="btn removeCountry"
+            data-country="{{this.dataValues.country_name}}"><i class="fas fa-trash visitedIcon"></i></button></li>
         {{/if}}
         {{/each}}
       </ul>
@@ -109,17 +109,16 @@
 
         <div class="col-md-12">
           {{!-- #1 Input search --}}
-        
+
           <div class="row">
 
             <div class="col-md-12">
               <form id="countrySearchForm">
                 <div class="form-group">
-                  <label for="inputNewCountry"><i class="fas fa-search"></i>  Search for a country:</label>
+                  <label for="inputNewCountry"><i class="fas fa-search"></i> Search for a country:</label>
                   <input class="form-control" type="text" id="countrySearch"
                     placeholder="Be sure to use proper capitalization and spelling...">
                 </div>
-                <br>
                 <button type="button" id="countrySearchBtn" class="btn btn-primary">Search</button>
               </form>
             </div>
@@ -129,37 +128,37 @@
           <br>
           <br>
           {{!-- #2 A-Z search --}}
-        <div class="row">
-          
-          <div class="col-md-12" id="letters" id="abcsearch">
-            <h4 class="searchByAlphabet"><i class="fas fa-search"></i>  Search for a country by the alphabet:</h4>
-            <br>
-                  <button class="alphaButton">A </button>
-                  <button class="alphaButton">B </button>
-                  <button class="alphaButton">C </button>
-                  <button class="alphaButton">D </button>
-                  <button class="alphaButton">E </button>
-                  <button class="alphaButton">F </button>
-                  <button class="alphaButton">G </button>
-                  <button class="alphaButton">H </button>
-                  <button class="alphaButton">I </button>
-                  <button class="alphaButton">J </button>
-                  <button class="alphaButton">K </button>
-                  <button class="alphaButton">L </button>
-                  <button class="alphaButton">M </button>
-                  <button class="alphaButton">N </button>
-                  <button class="alphaButton">O </button>
-                  <button class="alphaButton">P </button>
-                  <button class="alphaButton">Q </button>
-                  <button class="alphaButton">R </button>
-                  <button class="alphaButton">S </button>
-                  <button class="alphaButton">T </button>
-                  <button class="alphaButton">U </button>
-                  <button class="alphaButton">V </button>
-                  <button class="alphaButton">W </button>
-                  <button class="alphaButton">X </button>
-                  <button class="alphaButton">Y </button>
-                  <button class="alphaButton">Z </button>
+          <div class="row">
+
+            <div class="col-md-12" id="letters" id="abcsearch">
+              <h4 class="searchByAlphabet"><i class="fas fa-search"></i> Search for a country by the alphabet:</h4>
+              <br>
+              <button class="alphaButton">A </button>
+              <button class="alphaButton">B </button>
+              <button class="alphaButton">C </button>
+              <button class="alphaButton">D </button>
+              <button class="alphaButton">E </button>
+              <button class="alphaButton">F </button>
+              <button class="alphaButton">G </button>
+              <button class="alphaButton">H </button>
+              <button class="alphaButton">I </button>
+              <button class="alphaButton">J </button>
+              <button class="alphaButton">K </button>
+              <button class="alphaButton">L </button>
+              <button class="alphaButton">M </button>
+              <button class="alphaButton">N </button>
+              <button class="alphaButton">O </button>
+              <button class="alphaButton">P </button>
+              <button class="alphaButton">Q </button>
+              <button class="alphaButton">R </button>
+              <button class="alphaButton">S </button>
+              <button class="alphaButton">T </button>
+              <button class="alphaButton">U </button>
+              <button class="alphaButton">V </button>
+              <button class="alphaButton">W </button>
+              <button class="alphaButton">X </button>
+              <button class="alphaButton">Y </button>
+              <button class="alphaButton">Z </button>
             </div>
           </div>
           <br><br><br>
@@ -167,7 +166,7 @@
           <div class="row">
 
             <div class="col-md-12">
-              <h4><i class="fas fa-search"></i>  Search for a country by region:</h4>
+              <h4><i class="fas fa-search"></i> Search for a country by region:</h4>
               <br>
               <button class="countryRegion">NORTHERN AMERICA</button>
               <button class="countryRegion">WESTERN EUROPE</button>
@@ -192,9 +191,10 @@
 
       <div id="showCountryCard"></div>
       <div>
-        <ul id="countriesByRegion"></ul>
+        <ul id="countrySearchDisplay"></ul>
+        {{!-- <ul id="countriesByRegion"></ul>
         <ul id="countriesAtoZ"></ul>
-        <ul id="countrySearchResult"></ul>
+        <ul id="countrySearchResult"></ul> --}}
       </div>
 
     </div>
@@ -210,11 +210,11 @@
   <div class="row">
 
     <div class="col-md-12">
-      <h3>Travel Notes    <i class="fas fa-book-open"></i></h3>
+      <h3>Travel Notes <i class="fas fa-book-open"></i></h3>
     </div>
 
   </div>
-<br>
+  <br>
   {{!-- This row is for the travel notes input form and notes display --}}
   <div class="row">
 
