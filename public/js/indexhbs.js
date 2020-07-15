@@ -1,4 +1,4 @@
-import { response } from "express";
+//import { response } from "express";
 
 //import axios from "axios";
 $(document).ready(function () {
@@ -373,8 +373,10 @@ $(document).ready(function () {
                 .get("https://restcountries.eu/rest/v2/name/" + countrySearched)
                 .then(function (res) {
                     console.log(res);
-                    $("#funFacts").append(`<li>${res.data[0].currencies[0].name}
-                    ${res.data[0].languages[0].name}</li>`);
+                    $("#currencyFacts").append(`<li>${res.data[0].currencies[0].name} :${res.data[0].currencies[0].symbol}</li>`);
+                    $("#languagesFacts").append(`<li>${res.data[0].languages[0].name}</li>`);
+                    $("#flagsFacts").append(`<li>${res.data[0].languages[0].name}</li>`);
+                    $("#currencyFacts").append(`<li>${res.data[0].languages[0].name}</li>`);
                     //console.log(res.data[0].currencies[0].name);
                     //console.log(res.data.flag);
                     //console.log(res.data.currencies);
