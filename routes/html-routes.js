@@ -6,31 +6,31 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
-  // WE MIGHT NOT NEED THESE 2 (COMMENTED OUT) ANYMORE GIVEN HANDLEBARS BUT KEEP THEM HERE UNTIL WE KNOW FOR SURE -BV
-  // app.get("/", (req, res) => {
+    // WE MIGHT NOT NEED THESE 2 (COMMENTED OUT) ANYMORE GIVEN HANDLEBARS BUT KEEP THEM HERE UNTIL WE KNOW FOR SURE -BV
+    // app.get("/", (req, res) => {
 
-  //   res.sendFile(path.join(__dirname, "../public/basiclayout.html"));
-  // });
+    //   res.sendFile(path.join(__dirname, "../public/basiclayout.html"));
+    // });
 
-  // app.get("/", (req, res) => {
-  //   // If the user already has an account send them to the members page
-  //   if (req.user) {
-  //     res.redirect("/members");
-  //   }
-  //   res.sendFile(path.join(__dirname, "../public/signup.html"));
-  // });
+    // app.get("/", (req, res) => {
+    //   // If the user already has an account send them to the members page
+    //   if (req.user) {
+    //     res.redirect("/members");
+    //   }
+    //   res.sendFile(path.join(__dirname, "../public/signup.html"));
+    // });
 
-  app.get("/login", (req, res) => {
+    app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-  });
+        if (req.user) {
+            res.redirect("/members");
+        }
+        res.sendFile(path.join(__dirname, "../public/login.html"));
+    });
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-  });
+    // Here we've add our isAuthenticated middleware to this route.
+    // If a user who is not logged in tries to access this route they will be redirected to the signup page
+    app.get("/members", isAuthenticated, (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/members.html"));
+    });
 };
