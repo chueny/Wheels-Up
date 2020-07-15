@@ -329,7 +329,7 @@ $(document).ready(function () {
     $(document).on("click", "#saveNoteBtn", function (event) {
         event.preventDefault();
 
-
+        console.log("button click worked!");
         // Prevents the user submitting the post if the title or text is missing
         if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
             return;
@@ -339,8 +339,8 @@ $(document).ready(function () {
         const travelNoteText = $("#travelNoteText").val().trim();
 
         const newTravelNote = {
-            noteTitle: travelNoteTitle,
-            noteText: travelNoteText
+            note_title: travelNoteTitle,
+            note_text: travelNoteText
         };
 
         postTravelNote(newTravelNote);

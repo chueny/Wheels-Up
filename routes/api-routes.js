@@ -120,7 +120,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/notes", (req, res) => {
-        console.log(req.body.note_title + req.body.note_text);
+
         db.Notes.create({
             note_title: req.body.note_title,
             note_text: req.body.note_text
@@ -133,7 +133,6 @@ module.exports = function (app) {
             });
     });
 
-    // THIS ROUTE WORKS BUT GETTING THE CORRECT ID IS NOT!
     app.delete("/api/notes/:id", (req, res) => {
         console.log("HEY! req.params.id EQUALS: " + req.params.id);
         db.Notes.destroy({
