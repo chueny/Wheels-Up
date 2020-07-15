@@ -169,7 +169,7 @@ $(document).ready(function () {
 
                 //changed condition is passed as parameter to addToDesired;
                 addToDesired(desiredCountry);
-
+                location.reload();
             }
         });
 
