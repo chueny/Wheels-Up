@@ -102,7 +102,12 @@ body {
 }
 
 #funFacts{
-  height: 100px;
-  width: 250px;
-  border: 2px solid blue;  
+  /* height: 100px; */
+  /* width: 250px; */
+  border: 2px solid blue;
+  padding: 5%;  
+}
+#flagSize{
+  height: 80px;
+  width: 80px;
 }
