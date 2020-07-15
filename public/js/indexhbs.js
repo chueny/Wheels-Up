@@ -1,3 +1,4 @@
+//import axios from "axios";
 $(document).ready(function () {
 
     console.log("JS is working!");
@@ -330,6 +331,7 @@ $(document).ready(function () {
         console.log(countrySearched);
 
         getAllCountries();
+        countryFunFacts();
 
         function countrySearch() {
 
@@ -364,67 +366,82 @@ $(document).ready(function () {
                 countrySearch();
             });
         }
+        function countryFunFacts() {
+            axios
+                .get("https://restcountries.eu/rest/v2/name/" + countrySearched)
+                .then(function (res) {
+                    $("#funFacts").append("<li>" + res.data[0].currencies[0].name + 
+                    res.data[0].languages[0].name  + `</li>`);
+                    //console.log(res.data[0].currencies[0].name);
+                    //console.log(res.data.flag);
+                    //console.log(res.data.currencies);
 
+                })
+
+                .catch ((error) => {
+                console.log(error)
+            })
+}
     });
 
-    $(document).on("click", "#saveNoteBtn", function (event) {
-        event.preventDefault();
+$(document).on("click", "#saveNoteBtn", function (event) {
+    event.preventDefault();
 
 
-        // Prevents the user submitting the post if the title or text is missing
-        if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
-            return;
-        }
+    // Prevents the user submitting the post if the title or text is missing
+    if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
+        return;
+    }
 
-        console.log("clicked worked! and missing field validation worked too!");
+    console.log("clicked worked! and missing field validation worked too!");
 
-        const travelNoteTitle = $("#travelNoteTitle").val().trim();
-        const travelNoteText = $("#travelNoteText").val().trim();
+    const travelNoteTitle = $("#travelNoteTitle").val().trim();
+    const travelNoteText = $("#travelNoteText").val().trim();
 
-        const newTravelNote = {
-            note_title: travelNoteTitle,
-            note_text: travelNoteText
-        };
+    const newTravelNote = {
+        note_title: travelNoteTitle,
+        note_text: travelNoteText
+    };
 
-        postTravelNote(newTravelNote);
+    postTravelNote(newTravelNote);
 
-        function postTravelNote(travelNoteObj) {
-            console.log(travelNoteObj);
-            $.ajax({
-                url: "/api/notes",
-                data: travelNoteObj,
-                method: "POST",
-            }).then(
-                function () {
-                    location.reload();
-                }
-            );
-        }
+    function postTravelNote(travelNoteObj) {
+        console.log(travelNoteObj);
+        $.ajax({
+            url: "/api/notes",
+            data: travelNoteObj,
+            method: "POST",
+        }).then(
+            function () {
+                location.reload();
+            }
+        );
+    }
 
-        $("#travelNoteTitle").val("");
-        $("#travelNoteText").val("");
+    $("#travelNoteTitle").val("");
+    $("#travelNoteText").val("");
 
-    });
+});
 
-    $(document).on("click", ".deleteNoteBtn", function (event) {
-        event.preventDefault();
+$(document).on("click", ".deleteNoteBtn", function (event) {
+    event.preventDefault();
 
-        const noteID = $(this).attr("data-id");
+    const noteID = $(this).attr("data-id");
 
-        deleteTravelNote(noteID);
+    deleteTravelNote(noteID);
 
-        function deleteTravelNote(id) {
-            $.ajax({
-                url: "/api/notes/" + id,
-                method: "DELETE",
-            }).then(
-                function () {
-                    location.reload();
-                }
-            );
-        }
+    function deleteTravelNote(id) {
+        $.ajax({
+            url: "/api/notes/" + id,
+            method: "DELETE",
+        }).then(
+            function () {
+                location.reload();
+            }
+        );
+    }
 
-    });
+});
 
 
 });
