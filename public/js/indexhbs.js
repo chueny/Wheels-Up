@@ -3,12 +3,12 @@ $(document).ready(function () {
 
     console.log("JS is working!");
 
+    // ADDS COUNTRY TO "TO VISIT" LIST
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
         // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
         let countryName = $(this).parent().text().slice(0, -12);
-        console.log(countryName);
 
         const desiredCountry = {
             country_name: countryName,
@@ -18,25 +18,23 @@ $(document).ready(function () {
         addToDesired(desiredCountry);
 
         function addToDesired(countryObj) {
-            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
         }
     });
 
+    // ADDS COUNTRY TO "VISITED" LIST
     $(document).on("click", ".addToVisited", function (event) {
         event.preventDefault();
 
         let countryName = $(this).parent().text().slice(0, -11);
-        console.log(countryName);
 
         const visitedCountry = {
             country_name: countryName,
@@ -47,14 +45,12 @@ $(document).ready(function () {
         addToVisited(visitedCountry);
 
         function addToVisited(countryObj) {
-            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/visited",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to visited.");
                     location.reload();
                 }
             );
@@ -65,7 +61,6 @@ $(document).ready(function () {
         event.preventDefault();
 
         let countryName = $(this).parent().text().slice(0, -8);
-        console.log(countryName);
 
         const removedCountry = {
             country_name: countryName,
@@ -75,43 +70,12 @@ $(document).ready(function () {
         removeCountry(removedCountry);
 
         function removeCountry(countryObj) {
-            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/remove",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " removed.");
-                    location.reload();
-                }
-            );
-        }
-    });
-
-    $(document).on("click", ".addToDesired", function (event) {
-        event.preventDefault();
-
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
-        console.log(countryName);
-
-        const desiredCountry = {
-            countryName: countryName,
-            desired: 1
-        };
-
-        addToDesired(desiredCountry);
-
-        function addToDesired(countryObj) {
-            console.log(countryObj);
-            $.ajax({
-                method: "PUT",
-                url: "/api/desired",
-                data: countryObj
-            }).then(
-                function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
@@ -121,7 +85,7 @@ $(document).ready(function () {
     // DISPLAYS COUNTRIES BY FIRST LETTER
     $(document).on("click", ".alphaButton", function (event) {
         event.preventDefault();
-        //figure out what letter is clicked, need the value of the button
+
         let currentLetter = event.currentTarget.innerText;
 
         getAllCountries();
@@ -129,7 +93,7 @@ $(document).ready(function () {
         function filterByLetter() {
             $("#countriesAtoZ").empty();
             const allCountries = [];
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
@@ -147,8 +111,7 @@ $(document).ready(function () {
         }
     });
 
-    //DISPLAYS MORE INFO ABOUT THE COUNTRIES
-
+    //DISPLAYS MORE INFO ABOUT A COUNTRY
     $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
 
@@ -211,14 +174,12 @@ $(document).ready(function () {
         });
 
         function addToDesired(countryObj) {
-            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
@@ -232,8 +193,6 @@ $(document).ready(function () {
 
         let selectedRegion = $(this).html();
 
-        console.log(selectedRegion);
-
         getAllCountries();
 
         function displayByRegion() {
@@ -243,7 +202,7 @@ $(document).ready(function () {
             const allCountries = [];
 
             // Gets all the countries from the db and puts it into array allCountries
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
@@ -251,7 +210,7 @@ $(document).ready(function () {
 
             // Filters through allCountries and puts countries into countriesOfChosenRegion if its region matches the text of the button
             // eslint-disable-next-line no-redeclare
-            for (var i = 0; i < allCountries.length; i++) {
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].region === selectedRegion) {
 
                     countriesOfChosenRegion.push(allCountries[i]);
@@ -278,8 +237,6 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        console.log(countrySearched);
-
         getAllCountries();
 
         function countrySearch() {
@@ -292,8 +249,6 @@ $(document).ready(function () {
             for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
-
-            console.log(allCountries[3].country_name);
 
             const countryMatchedSearch = [];
 
@@ -332,8 +287,6 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        console.log(countrySearched);
-
         getAllCountries();
 
         function countrySearch() {
@@ -342,14 +295,14 @@ $(document).ready(function () {
 
             const allCountries = [];
 
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
             const countryMatchedSearch = [];
 
             // eslint-disable-next-line no-redeclare
-            for (var i = 0; i < allCountries.length; i++) {
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
@@ -382,8 +335,6 @@ $(document).ready(function () {
             return;
         }
 
-        console.log("clicked worked! and missing field validation worked too!");
-
         const travelNoteTitle = $("#travelNoteTitle").val().trim();
         const travelNoteText = $("#travelNoteText").val().trim();
 
@@ -395,7 +346,6 @@ $(document).ready(function () {
         postTravelNote(newTravelNote);
 
         function postTravelNote(travelNoteObj) {
-            console.log(travelNoteObj);
             $.ajax({
                 url: "/api/notes",
                 data: travelNoteObj,
