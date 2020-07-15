@@ -287,14 +287,16 @@ $(document).ready(function () {
             const allCountries = [];
 
             // Gets all the countries from the db and puts it into array allCountries
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
+
+            console.log(allCountries[3].country_name);
 
             const countryMatchedSearch = [];
 
             // Filters through allCountries and puts countries into countryMatchedSearch if it matches the search value
-            for (var i = 0; i < allCountries.length; i++) {
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
