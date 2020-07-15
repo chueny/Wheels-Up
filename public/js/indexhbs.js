@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 $(document).ready(function () {
 
     console.log("JS is working!");
@@ -17,7 +18,7 @@ $(document).ready(function () {
         addToDesired(desiredCountry);
 
         function addToDesired(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
@@ -46,7 +47,7 @@ $(document).ready(function () {
         addToVisited(visitedCountry);
 
         function addToVisited(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/visited",
@@ -74,7 +75,7 @@ $(document).ready(function () {
         removeCountry(removedCountry);
 
         function removeCountry(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/remove",
@@ -96,14 +97,14 @@ $(document).ready(function () {
         console.log(countryName);
 
         const desiredCountry = {
-            country_name: countryName,
+            countryName: countryName,
             desired: 1
         };
 
         addToDesired(desiredCountry);
 
         function addToDesired(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
@@ -125,10 +126,6 @@ $(document).ready(function () {
 
         getAllCountries();
 
-        if ("asdf" == "fdsa") {
-            console.log("The world is broken");
-        }
-
         function filterByLetter() {
             $("#countriesAtoZ").empty();
             const allCountries = [];
@@ -137,7 +134,7 @@ $(document).ready(function () {
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
+            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
 
         }
 
@@ -155,8 +152,8 @@ $(document).ready(function () {
     $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
 
-        const countryResults = document.getElementById('showCountryCard');
-        const countryAtoZ = document.getElementById('countriesAtoZ');
+        const countryResults = document.getElementById("showCountryCard");
+        const countryAtoZ = document.getElementById("countriesAtoZ");
 
         //this countryCard displays information about said country
         function countryCard(countryName, population, region) {
@@ -174,47 +171,48 @@ $(document).ready(function () {
             Add to List</button>
             </div>`;
 
-        };
+        }
 
         //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
         //when clicked, it sends information attached from the button to some variables that gets passed
         //as parameters to countryCard so that countryCard has that information to display
-        countryAtoZ.addEventListener('click', (e) => {
+        countryAtoZ.addEventListener("click", (e) => {
             const clickedEl = e.target;
 
-            if (clickedEl.tagName === 'BUTTON') {
-                const countryName = clickedEl.getAttribute('data-name');
-                const population = clickedEl.getAttribute('data-population');
-                const region = clickedEl.getAttribute('data-region');
+            if (clickedEl.tagName === "BUTTON") {
+                const countryName = clickedEl.getAttribute("data-name");
+                const population = clickedEl.getAttribute("data-population");
+                const region = clickedEl.getAttribute("data-region");
                 countryCard(countryName, population, region);
             }
         });
 
         //eventlistener for when add to list button is clicked, links to the showCountryCard tag
-        countryResults.addEventListener('click', (e) => {
+        countryResults.addEventListener("click", (e) => {
             const cardEl = e.target;
 
-            if (cardEl.tagName === 'BUTTON') {
+            if (cardEl.tagName === "BUTTON") {
 
                 //button has country data attributes
-                //which are stored as an array in the desiredCountry variable, with changed condition 
-                const countryName = cardEl.getAttribute('data-country');
-                const population = cardEl.getAttribute('data-population');
-                const region = cardEl.getAttribute('data-region');
+                //which are stored as an array in the desiredCountry variable, with changed condition
+                const countryName = cardEl.getAttribute("data-country");
+                //const population = cardEl.getAttribute("data-population");
+                //const region = cardEl.getAttribute("data-region");
 
                 const desiredCountry = {
-                    country_name: countryName,
+                    countryName: countryName,
                     desired: 1
                 };
 
-                //changed condition is passed as parameter to addToDesired function 
+                // eslint-disable-next-line no-trailing-spaces
+                //changed condition is passed as parameter to addToDesired function; 
                 addToDesired(desiredCountry);
 
             }
         });
 
         function addToDesired(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
@@ -253,15 +251,16 @@ $(document).ready(function () {
             const countriesOfChosenRegion = [];
 
             // Filters through allCountries and puts countries into countriesOfChosenRegion if its region matches the text of the button
+            // eslint-disable-next-line no-redeclare
             for (var i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].region === selectedRegion) {
 
                     countriesOfChosenRegion.push(allCountries[i]);
                 }
-            };
+            }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + " <button class=\"addToDesired\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -298,12 +297,13 @@ $(document).ready(function () {
             const countryMatchedSearch = [];
 
             // Filters through allCountries and puts countries into countryMatchedSearch if it matches the search value
+            // eslint-disable-next-line no-redeclare
             for (var i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
-            };
+            }
 
             // Checks if any countries matched and throws error message if not
             if (countryMatchedSearch.length === 0) {
@@ -312,7 +312,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + "<button class=\"addToDesired\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -347,19 +347,20 @@ $(document).ready(function () {
 
             const countryMatchedSearch = [];
 
+            // eslint-disable-next-line no-redeclare
             for (var i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
-            };
+            }
 
             if (countryMatchedSearch.length === 0) {
 
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + " <button class=\"addToDesired\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -386,8 +387,8 @@ $(document).ready(function () {
         const travelNoteText = $("#travelNoteText").val().trim();
 
         const newTravelNote = {
-            note_title: travelNoteTitle,
-            note_text: travelNoteText
+            noteTitle: travelNoteTitle,
+            noteText: travelNoteText
         };
 
         postTravelNote(newTravelNote);
