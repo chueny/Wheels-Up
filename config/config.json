@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "chueny20",
+    "password": "soccer123",
     "database": "country_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
