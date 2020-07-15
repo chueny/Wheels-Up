@@ -1,7 +1,2 @@
 models/index.js
 node_modules
-**/*.json
-*.json
-**/*.css
-**/*.scss
-README.md
