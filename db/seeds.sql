@@ -15,4 +15,15 @@ VALUES('Peru', FALSE, TRUE, 28302603, 'LATIN AMER. & CARIB');
 INSERT INTO Countries (country_name, desired, visited, population, region)
 VALUES('Egypt', FALSE, FALSE, 78887007, 'NORTHERN AFRICA');
 
+
+
+
+INSERT INTO Notes (note_title, note_text)
+VALUES('Packing List', 'soap, flashlight, tickets, jacket.');
+
+INSERT INTO Notes (note_title, note_text)
+VALUES('Questions for Host', 'Where is the bathroom?');
+
 SELECT * FROM Countries;
+
+SELECT * FROM Notes;
