@@ -196,16 +196,15 @@ $(document).ready(function () {
                 //button has country data attributes
                 //which are stored as an array in the desiredCountry variable, with changed condition
                 const countryName = cardEl.getAttribute("data-country");
-                //const population = cardEl.getAttribute("data-population");
-                //const region = cardEl.getAttribute("data-region");
+                // const population = cardEl.getAttribute('data-population');
+                // const region = cardEl.getAttribute('data-region');
 
                 const desiredCountry = {
-                    countryName: countryName,
+                    country_name: countryName,
                     desired: 1
                 };
 
-                // eslint-disable-next-line no-trailing-spaces
-                //changed condition is passed as parameter to addToDesired function; 
+                //changed condition is passed as parameter to addToDesired;
                 addToDesired(desiredCountry);
 
             }
