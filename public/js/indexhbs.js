@@ -59,8 +59,9 @@ $(document).ready(function () {
 
     $(document).on("click", ".removeCountry", function (event) {
         event.preventDefault();
+        event.stopPropagation();
 
-        let countryName = $(this).parent().text().slice(0, -8);
+        let countryName = $(this).attr("data-country");
 
         const removedCountry = {
             country_name: countryName,
