@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint",
     "start": "node server.js",
-    "lint": "eslint --quiet .",
+    "lint": "node_modules/eslint/bin/eslint.js .",
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
   },
@@ -16,6 +16,7 @@
   "dependencies": {
     "bcryptjs": "2.4.3",
     "country-flag-icons": "^1.2.1",
+    "eslint": "^4.19.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.0.0",
     "express-session": "^1.16.1",
@@ -31,7 +32,6 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "cross-env": "^5.2.0",
-    "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
     "handlebars": "^4.7.6",
