@@ -4,7 +4,7 @@ h1 {
   text-align: center;
   margin: 25px;
   font-family: 'Roboto', sans-serif;
-  font-size: 75px;
+  font-size: 80px;
 
 }
 
@@ -15,20 +15,35 @@ h1 {
   justify-content: center;
   }
   
-  #letters{
+#letters{
     display: flex;
     justify-content: center;
-  }
+}
 
-  h4  {
-text-align: center;
+label {
+  font-weight: bold;
+  font-size: 20px;
+}
 
-  }
+span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+h3 {
+
+  font-weight: bold;
+}
+h4 {
+  font-weight: bold;
+  font-size: 20px;
+}
 
 h5 {
   text-align: center;
   margin-bottom: 100px;
   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 
 }
 
@@ -75,20 +90,11 @@ img {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0px;
-  width: 75%;
+  width: 100%;
   height: auto;
 
 }
-div#imageBackground {
-  background-image: url(../../assets/images/clouds.png);
-  display: block;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
-  width: 100%;
-  height: auto;
-}
+
 
 .inputNewCountry {
 size: 100px;
