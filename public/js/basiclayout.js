@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     let countries = [];
-    
     getCountries();
 
     // This function creates an array (toVisitCountries) and puts all the country names coming from the database in it and appends each to the page.
@@ -10,22 +9,22 @@ $(document).ready(function () {
         $("#visited").empty();
 
         const toVisitCountries = [];
-        
+
         for (var i = 0; i < countries.length; i++) {
             toVisitCountries.push(countries[i]);
 
-            $("#toVisit").append("<li>" + toVisitCountries[i].country_name + ` <button class="addToVisited">Wheels Up!</button></li>`);
+            $("#toVisit").append("<li>" + toVisitCountries[i].country_name + " <button class=\"addToVisited\">Wheels Up!</button></li>");
         }
-        
+
         // Filters out countries that have NOT been visited
         const visitedCountries = toVisitCountries.filter(function(countryData) {
 
             return countryData.visited === true;
         });
         console.log(visitedCountries);
-        
+
         // Appends the country's name to list of visited countries
-        visitedCountries.forEach(visitedCountry => $("#visited").append("<li>" + visitedCountry.country_name + "</li>"))
+        visitedCountries.forEach(visitedCountry => $("#visited").append("<li>" + visitedCountry.country_name + "</li>"));
 
 
     }
@@ -39,7 +38,7 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on("click", ".addToVisited", function(event){ 
+    $(document).on("click", ".addToVisited", function(event){
         event.preventDefault();
 
         // RIGHT NOW countryName IS JUST THE COUNTRY NAME; USE THIS FOR THE PUT REQUEST SOMEHOW
@@ -50,6 +49,7 @@ $(document).ready(function () {
         //const visitedCountry = countryName;
 
         const visitedCountry = {
+            // eslint-disable-next-line camelcase
             country_name: countryName,
             visited: 1
         };
@@ -57,11 +57,11 @@ $(document).ready(function () {
         addToVisited(visitedCountry);
 
         function addToVisited(countryObj) {
-            console.log(countryObj)
+            console.log(countryObj);
             $.ajax({
-              method: "PUT",
-              url: "/api/visited",
-              data: countryObj
+                method: "PUT",
+                url: "/api/visited",
+                data: countryObj
             }).then(
                 function () {
                     console.log(countryName + " added to visited.");
@@ -78,6 +78,7 @@ $(document).ready(function () {
         console.log(this);
 
         const newDesiredCountry = {
+            // eslint-disable-next-line camelcase
             country_name: countryName,
             desired: 1
         };
@@ -88,9 +89,9 @@ $(document).ready(function () {
 
         function updateDesired(newDesired) {
             $.ajax({
-              method: "PUT",
-              url: "/api/desiredChange",
-              data: newDesired
+                method: "PUT",
+                url: "/api/desiredChange",
+                data: newDesired
             }).then(
                 function () {
                     console.log(countryName + " added to the desired list.");

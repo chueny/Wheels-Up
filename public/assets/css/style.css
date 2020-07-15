@@ -21,11 +21,7 @@ h2 {
   flex-direction:column ;
   justify-content: center;
   }
-  
-#letters{
-    display: flex;
-    justify-content: center;
-}
+
 
 
 .savebluebtn {
