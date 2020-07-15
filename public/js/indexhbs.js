@@ -7,8 +7,9 @@ $(document).ready(function () {
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
+        let countryName = $(this).attr("data-country");
+
+        console.log(countryName);
 
         const desiredCountry = {
             country_name: countryName,
@@ -218,7 +219,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
+            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"" + region.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -268,7 +269,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -314,7 +315,7 @@ $(document).ready(function () {
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
