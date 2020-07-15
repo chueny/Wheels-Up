@@ -34,7 +34,7 @@ $(document).ready(function () {
     $(document).on("click", ".addToVisited", function (event) {
         event.preventDefault();
 
-        let countryName = $(this).parent().text().slice(0, -11);
+        let countryName = $(this).attr("data-country");
 
         const visitedCountry = {
             country_name: countryName,
@@ -98,7 +98,7 @@ $(document).ready(function () {
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countrySearchDisplay").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
+            filteredCountries.forEach(currentCountry => $("#countrySearchDisplay").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-country="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
 
         }
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
             const clickedEl = e.target;
 
             if (clickedEl.tagName === "BUTTON") {
-                const countryName = clickedEl.getAttribute("data-name");
+                const countryName = clickedEl.getAttribute("data-country");
                 const population = clickedEl.getAttribute("data-population");
                 const region = clickedEl.getAttribute("data-region");
                 countryCard(countryName, population, region);
@@ -218,7 +218,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\">Add to List</button></li>"));
+            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -268,7 +268,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -314,7 +314,7 @@ $(document).ready(function () {
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"{{this.dataValues.country_name}}\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -329,7 +329,6 @@ $(document).ready(function () {
     $(document).on("click", "#saveNoteBtn", function (event) {
         event.preventDefault();
 
-        console.log("button click worked!");
         // Prevents the user submitting the post if the title or text is missing
         if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
             return;
