@@ -92,7 +92,9 @@ $(document).ready(function () {
         getAllCountries();
 
         function filterByLetter() {
+
             $("#countrySearchDisplay").empty();
+
             const allCountries = [];
             for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
@@ -240,7 +242,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"" + region.country_name + "\">Add to List</button></li>"));
+            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"" + region.country_name + "\">Add to List</button><button class=\"moreInfo\" data-country=\"" + region.country_name + "\" data-population=\"" + region.population + "\" data-region=\"" + region.region + "\">More Info</button></li>"));
         }
 
         function getAllCountries() {
