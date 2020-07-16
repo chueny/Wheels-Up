@@ -123,7 +123,11 @@ $(document).ready(function () {
             axios
                 .get("https://restcountries.eu/rest/v2/name/" + countryName)
                 .then(function (res) {
-                    console.log(res);
+
+                    $("#currencyFacts").empty();
+                    $("#languageFacts").empty();
+                    $("#flagFacts").empty();
+
                     $("#currencyFacts").append(`${res.data[0].currencies[0].name} (${res.data[0].currencies[0].symbol})`);
                     $("#languageFacts").append(`${res.data[0].languages[0].name}`);
                     $("#flagFacts").append(`<div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"</div>`);
