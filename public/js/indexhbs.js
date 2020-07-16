@@ -1,15 +1,11 @@
 /* eslint-disable camelcase */
 $(document).ready(function () {
 
-    console.log("JS is working!");
-
     // ADDS COUNTRY TO "TO VISIT" LIST
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
         let countryName = $(this).attr("data-country");
-
-        console.log(countryName);
 
         const desiredCountry = {
             country_name: countryName,
@@ -218,6 +214,8 @@ $(document).ready(function () {
 
         let selectedRegion = $(this).html();
 
+        console.log("selectedRegion = " + selectedRegion);
+
         getAllCountries();
 
         function displayByRegion() {
@@ -231,6 +229,8 @@ $(document).ready(function () {
             for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
+
+            console.log("allCountries[1].country_name = " + allCountries[1].country_name);
 
             const countriesOfChosenRegion = [];
 
@@ -263,7 +263,7 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        console.log("countrySearched = " + countrySearched);
+        // console.log("countrySearched = " + countrySearched);
 
         getAllCountries();
 
