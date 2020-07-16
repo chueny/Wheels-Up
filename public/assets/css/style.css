@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+body{
+background-color: rosybrown;
+=======
 body {
   font-family: 'Roboto', sans-serif;
+>>>>>>> 82dd6c5eafa4412bb479dc956504e8f889e7433a
 }
 
 h1 {
@@ -85,4 +90,21 @@ size: 100px;
 #flags{
   display: flex;
   flex-wrap: wrap;
+}
+
+#funFacts{
+  /* height: 100px; */
+  /* width: 250px; */
+  border: 2px solid blue;
+  padding: 5%;  
+  box-shadow: 5px 10px 18px blue;
+}
+#flagSize{
+  height: 80px;
+  width: 80px;
+}
+#countryFunFactsTitle{
+  letter-spacing: 3px;
+  text-align: center;
+  border-bottom: 1px red;
 }
