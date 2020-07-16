@@ -263,8 +263,6 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        // console.log("countrySearched = " + countrySearched);
-
         getAllCountries();
 
         function countrySearch() {
