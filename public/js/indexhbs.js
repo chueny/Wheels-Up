@@ -315,7 +315,6 @@ $(document).ready(function () {
         let countrySearched = $("#countrySearch").val().trim();
 
         getAllCountries();
-        countryFunFacts();
 
         function countrySearch() {
 
