@@ -4,13 +4,31 @@
   </div>
 </div>
 <div class="container">
-  
+
 
   <div class="row">
 
     <div class="col-md-12">
+
       <h1>Wheels Up!</h1>
+
+      <p class="allFlags">
+        <img alt="Poland" class="card card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/PL.svg" height="10" width="10" />
+        <img alt="USA" class="card card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/US.svg" height="10" width="10" />
+        <img alt="Great-Britain" class="card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/GB.svg" height="10" width="10" />
+        <img alt="Australia" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AU.svg"
+          height="10" width="10" />
+        <img alt="Belgium" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/BE.svg"
+          height="10" width="10" />
+        <img alt="Colombia" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/CO.svg"
+          height="10" width="10" />
+      </p>
+
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
+
     </div>
 
   </div>
@@ -20,7 +38,7 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-departure"></i>
-      <span>Countries to Visit</span>
+      <span class="titleName">Countries to Visit</span>
       <ul id="desired">
         {{#each countries}}
         {{#if this.dataValues.desired}}
@@ -33,7 +51,7 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-arrival"></i>
-      <span>Countries Visited</span>
+      <span class="titleName">Countries Visited</span>
       <ul id="visited">
         {{#each countries}}
         {{#if this.dataValues.visited}}
@@ -142,9 +160,6 @@
       <div id="showCountryCard"></div>
       <div>
         <ul id="countrySearchDisplay"></ul>
-        {{!-- <ul id="countriesByRegion"></ul>
-        <ul id="countriesAtoZ"></ul>
-        <ul id="countrySearchResult"></ul> --}}
       </div>
 
     </div>
@@ -181,14 +196,6 @@
         </div>
         <button type="submit" class="saveBlueBtn" id="saveNoteBtn">Save</button>
       </form>
-    </div>
-
-    <div id="funFacts" class="bg-warning">
-      <h4 id="countryFunFactsTitle">Country Fun Fact</h4>
-      <li id="currencyFacts">Currencies:</li>
-      <li id="languagesFacts">Languages:</li>
-      <li id="flagsFacts">Flags:</li>
-      <li id="timezoneFacts">Time-Zone:</li>
     </div>
 
     <div class="col-md-6">

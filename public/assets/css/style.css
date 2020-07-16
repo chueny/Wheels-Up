@@ -19,7 +19,7 @@ h3 {
   font-weight: bold;
 }
 
-h4, label, span {
+h4, label, .titleName {
   font-weight: bold;
   font-size: 20px;
 }
@@ -39,13 +39,6 @@ img {
   width: 100%;
   height: auto;
 }
-
-#abcsearch{
-  margin:15px ;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  }
 
 .saveBlueBtn {
   background-color: #1E90ff;
@@ -83,24 +76,23 @@ img {
 size: 100px;
 }
 
-#flags{
-  display: flex;
-  flex-wrap: wrap;
+.card-country-name {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-#funFacts{
-  /* height: 100px; */
-  /* width: 250px; */
-  border: 2px solid blue;
-  padding: 5%;  
-  box-shadow: 5px 10px 18px blue;
-}
-#flagSize{
-  height: 80px;
-  width: 80px;
-}
-#countryFunFactsTitle{
-  letter-spacing: 3px;
+.allFlags {
   text-align: center;
-  border-bottom: 1px red;
+  }
+
+.flags {
+  width: 2.5rem;
+  display: inline;
+}
+
+#abcsearch {
+  margin:15px ;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
 }
