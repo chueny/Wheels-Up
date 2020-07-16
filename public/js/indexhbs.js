@@ -1,15 +1,14 @@
-//import { response } from "express";
-
-//import axios from "axios";
+/* eslint-disable camelcase */
 $(document).ready(function () {
 
     console.log("JS is working!");
 
+    // ADDS COUNTRY TO "TO VISIT" LIST
     $(document).on("click", ".addToDesired", function (event) {
         event.preventDefault();
 
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
+        let countryName = $(this).attr("data-country");
+
         console.log(countryName);
 
         const desiredCountry = {
@@ -20,25 +19,23 @@ $(document).ready(function () {
         addToDesired(desiredCountry);
 
         function addToDesired(countryObj) {
-            console.log(countryObj)
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
         }
     });
 
+    // ADDS COUNTRY TO "VISITED" LIST
     $(document).on("click", ".addToVisited", function (event) {
         event.preventDefault();
 
-        let countryName = $(this).parent().text().slice(0, -11);
-        console.log(countryName);
+        let countryName = $(this).attr("data-country");
 
         const visitedCountry = {
             country_name: countryName,
@@ -49,14 +46,12 @@ $(document).ready(function () {
         addToVisited(visitedCountry);
 
         function addToVisited(countryObj) {
-            console.log(countryObj)
             $.ajax({
                 method: "PUT",
                 url: "/api/visited",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to visited.");
                     location.reload();
                 }
             );
@@ -66,8 +61,7 @@ $(document).ready(function () {
     $(document).on("click", ".removeCountry", function (event) {
         event.preventDefault();
 
-        let countryName = $(this).parent().text().slice(0, -8);
-        console.log(countryName);
+        let countryName = $(this).attr("data-country");
 
         const removedCountry = {
             country_name: countryName,
@@ -77,43 +71,12 @@ $(document).ready(function () {
         removeCountry(removedCountry);
 
         function removeCountry(countryObj) {
-            console.log(countryObj)
             $.ajax({
                 method: "PUT",
                 url: "/api/remove",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " removed.");
-                    location.reload();
-                }
-            );
-        }
-    });
-
-    $(document).on("click", ".addToDesired", function (event) {
-        event.preventDefault();
-
-        // Learned about slice() from this SO page: https://stackoverflow.com/questions/4308934/how-to-delete-last-character-from-a-string-using-jquery
-        let countryName = $(this).parent().text().slice(0, -12);
-        console.log(countryName);
-
-        const desiredCountry = {
-            country_name: countryName,
-            desired: 1
-        };
-
-        addToDesired(desiredCountry);
-
-        function addToDesired(countryObj) {
-            console.log(countryObj)
-            $.ajax({
-                method: "PUT",
-                url: "/api/desired",
-                data: countryObj
-            }).then(
-                function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
@@ -123,20 +86,20 @@ $(document).ready(function () {
     // DISPLAYS COUNTRIES BY FIRST LETTER
     $(document).on("click", ".alphaButton", function (event) {
         event.preventDefault();
-        //figure out what letter is clicked, need the value of the button
+
         let currentLetter = event.currentTarget.innerText;
 
         getAllCountries();
 
         function filterByLetter() {
-            $("#countriesAtoZ").empty();
+            $("#countrySearchDisplay").empty();
             const allCountries = [];
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countriesAtoZ").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-name="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`))
+            filteredCountries.forEach(currentCountry => $("#countrySearchDisplay").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-country="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
 
         }
 
@@ -149,13 +112,12 @@ $(document).ready(function () {
         }
     });
 
-    //DISPLAYS MORE INFO ABOUT THE COUNTRIES
-
+    //DISPLAYS MORE INFO ABOUT A COUNTRY
     $(document).on("click", ".moreInfo", function (event) {
         event.preventDefault();
 
-        const countryResults = document.getElementById('showCountryCard');
-        const countryAtoZ = document.getElementById('countriesAtoZ');
+        const countryResults = document.getElementById("showCountryCard");
+        const countryAtoZ = document.getElementById("countrySearchDisplay");
 
         //this countryCard displays information about said country
         function countryCard(countryName, population, region) {
@@ -173,54 +135,52 @@ $(document).ready(function () {
             Add to List</button>
             </div>`;
 
-        };
+        }
 
         //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
         //when clicked, it sends information attached from the button to some variables that gets passed
         //as parameters to countryCard so that countryCard has that information to display
-        countryAtoZ.addEventListener('click', (e) => {
+        countryAtoZ.addEventListener("click", (e) => {
             const clickedEl = e.target;
 
-            if (clickedEl.tagName === 'BUTTON') {
-                const countryName = clickedEl.getAttribute('data-name');
-                const population = clickedEl.getAttribute('data-population');
-                const region = clickedEl.getAttribute('data-region');
+            if (clickedEl.tagName === "BUTTON") {
+                const countryName = clickedEl.getAttribute("data-country");
+                const population = clickedEl.getAttribute("data-population");
+                const region = clickedEl.getAttribute("data-region");
                 countryCard(countryName, population, region);
             }
         });
 
         //eventlistener for when add to list button is clicked, links to the showCountryCard tag
-        countryResults.addEventListener('click', (e) => {
+        countryResults.addEventListener("click", (e) => {
             const cardEl = e.target;
 
-            if (cardEl.tagName === 'BUTTON') {
+            if (cardEl.tagName === "BUTTON") {
 
                 //button has country data attributes
-                //which are stored as an array in the desiredCountry variable, with changed condition 
-                const countryName = cardEl.getAttribute('data-country');
-                const population = cardEl.getAttribute('data-population');
-                const region = cardEl.getAttribute('data-region');
+                //which are stored as an array in the desiredCountry variable, with changed condition
+                const countryName = cardEl.getAttribute("data-country");
+                // const population = cardEl.getAttribute('data-population');
+                // const region = cardEl.getAttribute('data-region');
 
                 const desiredCountry = {
                     country_name: countryName,
                     desired: 1
                 };
 
-                //changed condition is passed as parameter to addToDesired function 
+                //changed condition is passed as parameter to addToDesired;
                 addToDesired(desiredCountry);
-
+                location.reload();
             }
         });
 
         function addToDesired(countryObj) {
-            console.log(countryObj)
             $.ajax({
                 method: "PUT",
                 url: "/api/desired",
                 data: countryObj
             }).then(
                 function () {
-                    console.log(countryName + " added to desired.");
                     location.reload();
                 }
             );
@@ -234,33 +194,32 @@ $(document).ready(function () {
 
         let selectedRegion = $(this).html();
 
-        console.log(selectedRegion);
-
         getAllCountries();
 
         function displayByRegion() {
 
-            $("#countriesByRegion").empty();
+            $("#countrySearchDisplay").empty();
 
             const allCountries = [];
 
             // Gets all the countries from the db and puts it into array allCountries
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
             const countriesOfChosenRegion = [];
 
             // Filters through allCountries and puts countries into countriesOfChosenRegion if its region matches the text of the button
-            for (var i = 0; i < allCountries.length; i++) {
+            // eslint-disable-next-line no-redeclare
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].region === selectedRegion) {
 
                     countriesOfChosenRegion.push(allCountries[i]);
                 }
-            };
+            }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countriesByRegion").append("<li>" + region.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"" + region.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -279,30 +238,29 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        console.log(countrySearched);
-
         getAllCountries();
 
         function countrySearch() {
 
-            $("#countrySearchResult").empty();
+            $("#countrySearchDisplay").empty();
 
             const allCountries = [];
 
             // Gets all the countries from the db and puts it into array allCountries
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
             const countryMatchedSearch = [];
 
             // Filters through allCountries and puts countries into countryMatchedSearch if it matches the search value
-            for (var i = 0; i < allCountries.length; i++) {
+            // eslint-disable-next-line no-redeclare
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
-            };
+            }
 
             // Checks if any countries matched and throws error message if not
             if (countryMatchedSearch.length === 0) {
@@ -311,7 +269,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -330,36 +288,35 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
-        console.log(countrySearched);
-
         getAllCountries();
         countryFunFacts();
 
         function countrySearch() {
 
-            $("#countrySearchResult").empty();
+            $("#countrySearchDisplay").empty();
 
             const allCountries = [];
 
-            for (var i = 0; i < countries.length; i++) {
+            for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
 
             const countryMatchedSearch = [];
 
-            for (var i = 0; i < allCountries.length; i++) {
+            // eslint-disable-next-line no-redeclare
+            for (let i = 0; i < allCountries.length; i++) {
                 if (allCountries[i].country_name === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
-            };
+            }
 
             if (countryMatchedSearch.length === 0) {
 
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchResult").append("<li>" + country.country_name + ` <button class="addToDesired">Add to List</button></li>`))
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
         }
 
         function getAllCountries() {
@@ -380,73 +337,69 @@ $(document).ready(function () {
                     //console.log(res.data[0].currencies[0].name);
                     //console.log(res.data.flag);
                     //console.log(res.data.currencies);
-                    
+
                 })
 
-                .catch ((error) => {
-                console.log(error)
-            })
-}
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     });
 
-$(document).on("click", "#saveNoteBtn", function (event) {
-    event.preventDefault();
+    $(document).on("click", "#saveNoteBtn", function (event) {
+        event.preventDefault();
 
+        // Prevents the user submitting the post if the title or text is missing
+        if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
+            return;
+        }
 
-    // Prevents the user submitting the post if the title or text is missing
-    if (!$("#travelNoteTitle").val().trim() || !$("#travelNoteText").val().trim()) {
-        return;
-    }
+        const travelNoteTitle = $("#travelNoteTitle").val().trim();
+        const travelNoteText = $("#travelNoteText").val().trim();
 
-    console.log("clicked worked! and missing field validation worked too!");
+        const newTravelNote = {
+            note_title: travelNoteTitle,
+            note_text: travelNoteText
+        };
 
-    const travelNoteTitle = $("#travelNoteTitle").val().trim();
-    const travelNoteText = $("#travelNoteText").val().trim();
+        postTravelNote(newTravelNote);
 
-    const newTravelNote = {
-        note_title: travelNoteTitle,
-        note_text: travelNoteText
-    };
+        function postTravelNote(travelNoteObj) {
+            $.ajax({
+                url: "/api/notes",
+                data: travelNoteObj,
+                method: "POST",
+            }).then(
+                function () {
+                    location.reload();
+                }
+            );
+        }
 
-    postTravelNote(newTravelNote);
+        $("#travelNoteTitle").val("");
+        $("#travelNoteText").val("");
 
-    function postTravelNote(travelNoteObj) {
-        console.log(travelNoteObj);
-        $.ajax({
-            url: "/api/notes",
-            data: travelNoteObj,
-            method: "POST",
-        }).then(
-            function () {
-                location.reload();
-            }
-        );
-    }
+    });
 
-    $("#travelNoteTitle").val("");
-    $("#travelNoteText").val("");
+    $(document).on("click", ".deleteNoteBtn", function (event) {
+        event.preventDefault();
 
-});
+        const noteID = $(this).attr("data-id");
 
-$(document).on("click", ".deleteNoteBtn", function (event) {
-    event.preventDefault();
+        deleteTravelNote(noteID);
 
-    const noteID = $(this).attr("data-id");
+        function deleteTravelNote(id) {
+            $.ajax({
+                url: "/api/notes/" + id,
+                method: "DELETE",
+            }).then(
+                function () {
+                    location.reload();
+                }
+            );
+        }
 
-    deleteTravelNote(noteID);
-
-    function deleteTravelNote(id) {
-        $.ajax({
-            url: "/api/notes/" + id,
-            method: "DELETE",
-        }).then(
-            function () {
-                location.reload();
-            }
-        );
-    }
-
-});
+    });
 
 
 });

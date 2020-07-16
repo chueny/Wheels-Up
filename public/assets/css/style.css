@@ -1,21 +1,47 @@
+<<<<<<< HEAD
 body{
 background-color: rosybrown;
+=======
+body {
+  font-family: 'Roboto', sans-serif;
+>>>>>>> 82dd6c5eafa4412bb479dc956504e8f889e7433a
 }
 
 h1 {
   font-weight: bold;
   text-align: center;
   margin: 25px;
-  font-family: 'Roboto', sans-serif;
   font-size: 80px;
-
 }
-h2 {
-  
-    margin: 25px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 50px;
 
+h2 {
+    margin: 25px;
+    font-size: 50px;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+h4, label, span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+h5 {
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 18px;
+}
+
+img {
+  display: block;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  width: 100%;
+  height: auto;
 }
 
 #abcsearch{
@@ -24,43 +50,8 @@ h2 {
   flex-direction:column ;
   justify-content: center;
   }
-  
-#letters{
-    display: flex;
-    justify-content: center;
-}
 
-label {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-span {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-h3 {
-
-  font-weight: bold;
-}
-h4 {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-h5 {
-  text-align: center;
-  margin-bottom: 100px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-
-}
-
-
-
-.addToVisited{
-  
+.saveBlueBtn {
   background-color: #1E90ff;
   border: none;
   color: white;
@@ -72,31 +63,28 @@ h5 {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
-
 }
 
-
-
-img {
-  display: block;
-  margin-top: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0px;
-  width: 100%;
-  height: auto;
-
+.addToVisited{
+  background-color: #1E90ff;
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
+.visitedIcon {
+  color: gray;
+}
 
 .inputNewCountry {
 size: 100px;
-
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-
 }
 
 #flags{
