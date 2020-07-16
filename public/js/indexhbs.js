@@ -92,14 +92,17 @@ $(document).ready(function () {
         getAllCountries();
 
         function filterByLetter() {
+
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
+
             const allCountries = [];
             for (let i = 0; i < countries.length; i++) {
                 allCountries.push(countries[i]);
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countrySearchDisplay").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-country="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
+            filteredCountries.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"btn addToDesired\" data-country=\"" + country.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"></i></button></li>"));
 
         }
 
@@ -123,7 +126,11 @@ $(document).ready(function () {
             axios
                 .get("https://restcountries.eu/rest/v2/name/" + countryName)
                 .then(function (res) {
-                    console.log(res);
+
+                    $("#currencyFacts").empty();
+                    $("#languageFacts").empty();
+                    $("#flagFacts").empty();
+
                     $("#currencyFacts").append(`${res.data[0].currencies[0].name} (${res.data[0].currencies[0].symbol})`);
                     $("#languageFacts").append(`${res.data[0].languages[0].name}`);
                     $("#flagFacts").append(`<div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"</div>`);
@@ -160,7 +167,7 @@ $(document).ready(function () {
         countryAtoZ.addEventListener("click", (e) => {
             const clickedEl = e.target;
 
-            if (clickedEl.tagName === "BUTTON") {
+            if (clickedEl.tagName === "BUTTON" || "ICON") {
                 const countryName = clickedEl.getAttribute("data-country");
                 const population = clickedEl.getAttribute("data-population");
                 const region = clickedEl.getAttribute("data-region");
@@ -172,7 +179,7 @@ $(document).ready(function () {
         countryResults.addEventListener("click", (e) => {
             const cardEl = e.target;
 
-            if (cardEl.tagName === "BUTTON") {
+            if (cardEl.tagName === "BUTTON" || "ICON") {
 
                 //button has country data attributes
                 //which are stored as an array in the desiredCountry variable, with changed condition
@@ -216,6 +223,7 @@ $(document).ready(function () {
         function displayByRegion() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
@@ -236,7 +244,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"addToDesired\" data-country=\"" + region.country_name + "\">Add to List</button></li>"));
+            countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"btn addToDesired\" data-country=\"" + region.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + region.country_name + "\" data-population=\"" + region.population + "\" data-region=\"" + region.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + region.country_name + "\" data-population=\"" + region.population + "\" data-region=\"" + region.region + "\"></i></button></li>"));
         }
 
         function getAllCountries() {
@@ -260,6 +268,7 @@ $(document).ready(function () {
         function countrySearch() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
@@ -286,7 +295,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"btn addToDesired\" data-country=\"" + country.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"></i></button></li>"));
         }
 
         function getAllCountries() {
@@ -311,6 +320,7 @@ $(document).ready(function () {
         function countrySearch() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
@@ -333,7 +343,7 @@ $(document).ready(function () {
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"btn addToDesired\" data-country=\"" + country.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"></i></button></li>"));
         }
 
         function getAllCountries() {

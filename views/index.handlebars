@@ -19,12 +19,12 @@
           src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/US.svg" height="10" width="10" />
         <img alt="Great-Britain" class="card-img-top flags"
           src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/GB.svg" height="10" width="10" />
-        <img alt="Australia" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AU.svg"
-          height="10" width="10" />
-        <img alt="Belgium" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/BE.svg"
-          height="10" width="10" />
-        <img alt="Colombia" class="card-img-top flags" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/CO.svg"
-          height="10" width="10" />
+        <img alt="Australia" class="card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/AU.svg" height="10" width="10" />
+        <img alt="Belgium" class="card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/BE.svg" height="10" width="10" />
+        <img alt="Colombia" class="card-img-top flags"
+          src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/CO.svg" height="10" width="10" />
       </p>
 
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
@@ -36,20 +36,22 @@
   {{!-- This row displays the desired and visited lists of countries --}}
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-4">
       <i class="fas fa-plane-departure"></i>
       <span class="titleName">Countries to Visit</span>
       <ul id="desired">
         {{#each countries}}
         {{#if this.dataValues.desired}}
         <li>{{this.dataValues.country_name}} <button class="addToVisited"
-            data-country="{{this.dataValues.country_name}}">Wheels Up!</button></li>
+            data-country="{{this.dataValues.country_name}}"><i class="fas fa-plane"></i> Wheels Up!</button></li>
         {{/if}}
         {{/each}}
       </ul>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <i class="fas fa-plane-arrival"></i>
       <span class="titleName">Countries Visited</span>
       <ul id="visited">
@@ -61,6 +63,8 @@
         {{/each}}
       </ul>
     </div>
+
+    <div class="col-md-2"></div>
 
   </div>
 
