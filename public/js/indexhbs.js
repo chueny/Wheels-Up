@@ -263,6 +263,8 @@ $(document).ready(function () {
 
         let countrySearched = $("#countrySearch").val().trim();
 
+        console.log("countrySearched = " + countrySearched);
+
         getAllCountries();
 
         function countrySearch() {
@@ -282,7 +284,7 @@ $(document).ready(function () {
             // Filters through allCountries and puts countries into countryMatchedSearch if it matches the search value
             // eslint-disable-next-line no-redeclare
             for (let i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name === countrySearched) {
+                if (allCountries[i].country_name.slice(0, -1) === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
@@ -331,7 +333,7 @@ $(document).ready(function () {
 
             // eslint-disable-next-line no-redeclare
             for (let i = 0; i < allCountries.length; i++) {
-                if (allCountries[i].country_name === countrySearched) {
+                if (allCountries[i].country_name.slice(0, -1) === countrySearched) {
 
                     countryMatchedSearch.push(allCountries[i]);
                 }
