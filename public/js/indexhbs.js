@@ -94,6 +94,7 @@ $(document).ready(function () {
         function filterByLetter() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
             for (let i = 0; i < countries.length; i++) {
@@ -222,6 +223,7 @@ $(document).ready(function () {
         function displayByRegion() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
@@ -266,6 +268,7 @@ $(document).ready(function () {
         function countrySearch() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
@@ -317,6 +320,7 @@ $(document).ready(function () {
         function countrySearch() {
 
             $("#countrySearchDisplay").empty();
+            $("#showCountryCard").empty();
 
             const allCountries = [];
 
