@@ -375,7 +375,7 @@ $(document).ready(function () {
                     console.log(res);
                     $("#currencyFacts").append(`<ul><li>${res.data[0].currencies[0].name} :${res.data[0].currencies[0].symbol}</li></ul>`);
                     $("#languagesFacts").append(`<ul><li>${res.data[0].languages[0].name}</li></ul>`);
-                    $("#flagsFacts").append(`<div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"/></div>`);
+                    $("#flagsFacts").append(`<ul><li> <div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"/></div> </li></ul>`);
                     $("#timezoneFacts").append(`<ul><li>${res.data[0].timezones[0]}</li></ul>`);
                     //console.log(res.data[0].currencies[0].name);
                     //console.log(res.data.flag);
