@@ -68,6 +68,11 @@ img {
   border-radius: 4px;
 }
 
+.addToDesired, .moreInfo {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .visitedIcon {
   color: gray;
 }

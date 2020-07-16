@@ -102,7 +102,7 @@ $(document).ready(function () {
             }
             //https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
             const filteredCountries = allCountries.filter((currentCountry) => currentCountry.country_name.startsWith(currentLetter) === true);
-            filteredCountries.forEach(currentCountry => $("#countrySearchDisplay").append("<li>" + currentCountry.country_name + ` <button class="moreInfo" data-country="${currentCountry.country_name}" data-population="${currentCountry.population}" data-region="${currentCountry.region}">More Info</button> </li>`));
+            filteredCountries.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"btn addToDesired\" data-country=\"" + country.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\"></i></button></li>"));
 
         }
 
