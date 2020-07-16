@@ -19,7 +19,7 @@ h3 {
   font-weight: bold;
 }
 
-h4, label, span {
+h4, label, .titleName {
   font-weight: bold;
   font-size: 20px;
 }
@@ -40,7 +40,7 @@ img {
   height: auto;
 }
 
-#abcsearch{
+#abcsearch {
   margin:15px ;
   display: flex;
   flex-direction:column ;

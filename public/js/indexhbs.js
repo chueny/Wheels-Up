@@ -119,15 +119,31 @@ $(document).ready(function () {
         const countryResults = document.getElementById("showCountryCard");
         const countryAtoZ = document.getElementById("countrySearchDisplay");
 
+        function countryFunFacts(countryName) {
+            axios
+                .get("https://restcountries.eu/rest/v2/name/" + countryName)
+                .then(function (res) {
+                    console.log(res);
+                    $("#currencyFacts").append(`${res.data[0].currencies[0].name} ${res.data[0].currencies[0].symbol}`);
+                    $("#languageFacts").append(`${res.data[0].languages[0].name}`);
+                    $("#flagFacts").append(`<div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"</div>`);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
         //this countryCard displays information about said country
         function countryCard(countryName, population, region) {
             countryResults.innerHTML = `<div class="card"> 
             <div class="card-header"> ${countryName} </div> 
             <div class="card-body">
             <h5 class="card-title"></h5>
-            <p class="card-text">Why you should visit ${countryName}:</p>
+            <div id="flagFacts"></div>
             <p>Population: ${population}</p>
             <p>Region: ${region} </p>
+            <p>Language: <span id="languageFacts"></span></p>
+            <p>Currency: <span id="currencyFacts"></span></p>
             <button class="cardBtn"
                 data-country="${countryName}" 
                 data-population="${population}"
@@ -135,6 +151,7 @@ $(document).ready(function () {
             Add to List</button>
             </div>`;
 
+            countryFunFacts(countryName);
         }
 
         //eventlistener for when more info button is clicked, which links it to the functin ALPHA BUTTON
@@ -325,25 +342,25 @@ $(document).ready(function () {
                 countrySearch();
             });
         }
-        function countryFunFacts() {
-            axios
-                .get("https://restcountries.eu/rest/v2/name/" + countrySearched)
-                .then(function (res) {
-                    console.log(res);
-                    $("#currencyFacts").append(`<ul><li>${res.data[0].currencies[0].name} :${res.data[0].currencies[0].symbol}</li></ul>`);
-                    $("#languagesFacts").append(`<ul><li>${res.data[0].languages[0].name}</li></ul>`);
-                    $("#flagsFacts").append(`<ul><li> <div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"/></div> </li></ul>`);
-                    $("#timezoneFacts").append(`<ul><li>${res.data[0].timezones[0]}</li></ul>`);
-                    //console.log(res.data[0].currencies[0].name);
-                    //console.log(res.data.flag);
-                    //console.log(res.data.currencies);
+        // function countryFunFacts() {
+        //     axios
+        //         .get("https://restcountries.eu/rest/v2/name/" + countrySearched)
+        //         .then(function (res) {
+        //             console.log(res);
+        //             $("#currencyFacts").append(`<ul><li>${res.data[0].currencies[0].name} :${res.data[0].currencies[0].symbol}</li></ul>`);
+        //             $("#languagesFacts").append(`<ul><li>${res.data[0].languages[0].name}</li></ul>`);
+        //             $("#flagsFacts").append(`<ul><li> <div id="flagSize"> <img class="img-fluid" height="2px" width="2px" src="${res.data[0].flag}"/></div> </li></ul>`);
+        //             $("#timezoneFacts").append(`<ul><li>${res.data[0].timezones[0]}</li></ul>`);
+        //             //console.log(res.data[0].currencies[0].name);
+        //             //console.log(res.data.flag);
+        //             //console.log(res.data.currencies);
 
-                })
+        //         })
 
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+        //         .catch((error) => {
+        //             console.log(error);
+        //         });
+        // }
     });
 
     $(document).on("click", "#saveNoteBtn", function (event) {

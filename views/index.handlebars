@@ -4,12 +4,18 @@
   </div>
 </div>
 <div class="container">
-  
+
 
   <div class="row">
 
     <div class="col-md-12">
       <h1>Wheels Up!</h1>
+
+      <div class="card" style="width: 2.5rem;">
+        <img alt="Poland" class="card-img-top" src="http://catamphetamine.gitlab.io/country-flag-icons/3x2/PL.svg"
+          height="10" width="10" />
+      </div>
+
       <h5>The travel app that tracks countries visited and countries left to explore!</h5>
     </div>
 
@@ -20,7 +26,7 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-departure"></i>
-      <span>Countries to Visit</span>
+      <span class="titleName">Countries to Visit</span>
       <ul id="desired">
         {{#each countries}}
         {{#if this.dataValues.desired}}
@@ -33,7 +39,7 @@
 
     <div class="col-md-6">
       <i class="fas fa-plane-arrival"></i>
-      <span>Countries Visited</span>
+      <span class="titleName">Countries Visited</span>
       <ul id="visited">
         {{#each countries}}
         {{#if this.dataValues.visited}}
@@ -181,14 +187,6 @@
         </div>
         <button type="submit" class="saveBlueBtn" id="saveNoteBtn">Save</button>
       </form>
-    </div>
-
-    <div id="funFacts" class="bg-warning">
-      <h4 id="countryFunFactsTitle">Country Fun Fact</h4>
-      <li id="currencyFacts">Currencies:</li>
-      <li id="languagesFacts">Languages:</li>
-      <li id="flagsFacts">Flags:</li>
-      <li id="timezoneFacts">Time-Zone:</li>
     </div>
 
     <div class="col-md-6">
