@@ -292,7 +292,7 @@ $(document).ready(function () {
             }
 
             // Creates a <li> for each country and appends it to the ul
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button><button class=\"moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\">More Info</button></li>"));
         }
 
         function getAllCountries() {
@@ -339,7 +339,7 @@ $(document).ready(function () {
                 alert("Your search query did not match any country in our database. Please make sure you spelled it correctly and capitalized the first letter.");
             }
 
-            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button></li>"));
+            countryMatchedSearch.forEach(country => $("#countrySearchDisplay").append("<li>" + country.country_name + " <button class=\"addToDesired\" data-country=\"" + country.country_name + "\">Add to List</button><button class=\"moreInfo\" data-country=\"" + country.country_name + "\" data-population=\"" + country.population + "\" data-region=\"" + country.region + "\">More Info</button></li>"));
         }
 
         function getAllCountries() {
