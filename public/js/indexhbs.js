@@ -214,8 +214,6 @@ $(document).ready(function () {
 
         let selectedRegion = $(this).html();
 
-        console.log("selectedRegion = " + selectedRegion);
-
         getAllCountries();
 
         function displayByRegion() {
@@ -230,8 +228,6 @@ $(document).ready(function () {
                 allCountries.push(countries[i]);
             }
 
-            console.log("allCountries[1].country_name = " + allCountries[1].country_name);
-
             const countriesOfChosenRegion = [];
 
             // Filters through allCountries and puts countries into countriesOfChosenRegion if its region matches the text of the button
@@ -242,6 +238,8 @@ $(document).ready(function () {
                     countriesOfChosenRegion.push(allCountries[i]);
                 }
             }
+
+            // ^ THIS ^ HAS AN EXTRA SPACE IN IT WHICH MIGHT CAUSE PROBLEMS IN THE FUTURE (WORKS NOW)
 
             // Creates a <li> for each country and appends it to the ul
             countriesOfChosenRegion.forEach(region => $("#countrySearchDisplay").append("<li>" + region.country_name + " <button class=\"btn addToDesired\" data-country=\"" + region.country_name + "\"><i class=\"fas fa-plus\"></i></button><button class=\"btn moreInfo\" data-country=\"" + region.country_name + "\" data-population=\"" + region.population + "\" data-region=\"" + region.region + "\"><i class=\"fas fa-info-circle\" data-country=\"" + region.country_name + "\" data-population=\"" + region.population + "\" data-region=\"" + region.region + "\"></i></button></li>"));
